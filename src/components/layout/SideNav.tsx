@@ -50,6 +50,7 @@ interface SideNavEntry {
 const PAGE_PLATFORM_MAP: Partial<Record<Page, PlatformId>> = {
   overview: 'antigravity',
   codex: 'codex',
+  claude: 'claude',
   zed: 'zed',
   'github-copilot': 'github-copilot',
   windsurf: 'windsurf',

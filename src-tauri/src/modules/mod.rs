@@ -9,6 +9,7 @@ pub mod codebuddy_cn_instance;
 pub mod codebuddy_cn_oauth;
 pub mod codebuddy_instance;
 pub mod codebuddy_oauth;
+pub mod claude_account;
 pub mod codex_account;
 pub mod codex_instance;
 pub mod codex_local_access;

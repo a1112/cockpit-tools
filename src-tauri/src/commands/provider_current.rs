@@ -33,6 +33,7 @@ fn resolve_provider_current_account_id(platform: &str) -> Result<Option<String>,
             let accounts = crate::modules::codebuddy_cn_account::list_accounts();
             Ok(crate::modules::codebuddy_cn_account::resolve_current_account_id(&accounts))
         }
+        "claude" => Ok(crate::modules::claude_account::resolve_current_account_id()),
         "qoder" => {
             let accounts = crate::modules::qoder_account::list_accounts();
             Ok(crate::modules::qoder_account::resolve_current_account_id(

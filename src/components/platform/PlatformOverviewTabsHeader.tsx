@@ -24,6 +24,7 @@ import { PlatformGroupSwitcher } from './PlatformGroupSwitcher';
 export type PlatformOverviewTab = 'overview' | 'wakeup' | 'instances' | 'sessions' | 'providers';
 export type PlatformOverviewHeaderId =
   | 'codex'
+  | 'claude'
   | 'zed'
   | 'github-copilot'
   | 'windsurf'
@@ -58,6 +59,10 @@ const CONFIGS: Record<PlatformOverviewHeaderId, PlatformOverviewConfig> = {
   codex: {
     platformLabel: 'Codex',
     overviewIcon: <CodexIcon className="tab-icon" />,
+  },
+  claude: {
+    platformLabel: 'Claude',
+    overviewIcon: <Bot className="tab-icon" />,
   },
   zed: {
     platformLabel: 'Zed',

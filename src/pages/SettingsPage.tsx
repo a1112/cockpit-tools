@@ -182,17 +182,18 @@ const AUTO_SWITCH_SCOPE_SELECTED_ACCOUNTS: AutoSwitchAccountScopeMode = 'selecte
 const FALLBACK_PLATFORM_SETTINGS_ORDER: Record<PlatformId, number> = {
   antigravity: 0,
   codex: 1,
-  'github-copilot': 2,
-  windsurf: 3,
-  kiro: 4,
-  cursor: 5,
-  gemini: 6,
-  codebuddy: 7,
-  codebuddy_cn: 8,
-  qoder: 9,
-  trae: 10,
-  workbuddy: 11,
-  zed: 12,
+  claude: 2,
+  'github-copilot': 3,
+  windsurf: 4,
+  kiro: 5,
+  cursor: 6,
+  gemini: 7,
+  codebuddy: 8,
+  codebuddy_cn: 9,
+  qoder: 10,
+  trae: 11,
+  workbuddy: 12,
+  zed: 13,
 };
 type UpdateCheckSource = 'auto' | 'manual';
 type UpdateCheckFinishedDetail = {
@@ -1519,6 +1520,8 @@ export function SettingsPage() {
         return parseRefresh(autoRefresh) > 0;
       case 'codex':
         return parseRefresh(codexAutoRefresh) > 0;
+      case 'claude':
+        return false;
       case 'ghcp':
         return parseRefresh(ghcpAutoRefresh) > 0;
       case 'windsurf':

@@ -20,6 +20,8 @@ export function getPlatformLabel(platformId: PlatformId, _t: TFunction): string 
       return 'Antigravity';
     case 'codex':
       return 'Codex';
+    case 'claude':
+      return 'Claude';
     case 'zed':
       return 'Zed';
     case 'github-copilot':
@@ -53,6 +55,8 @@ export function renderPlatformIcon(platformId: PlatformId, size = 20): ReactNode
       return <RobotIcon style={{ width: size, height: size }} />;
     case 'codex':
       return <CodexIcon size={size} />;
+    case 'claude':
+      return <RobotIcon style={{ width: size, height: size }} />;
     case 'zed':
       return <ZedIcon size={size} />;
     case 'github-copilot':

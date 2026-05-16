@@ -7,6 +7,7 @@ import { useWindsurfAccountStore } from '../stores/useWindsurfAccountStore';
 import { useKiroAccountStore } from '../stores/useKiroAccountStore';
 import { useCursorAccountStore } from '../stores/useCursorAccountStore';
 import { useGeminiAccountStore } from '../stores/useGeminiAccountStore';
+import { useClaudeAccountStore } from '../stores/useClaudeAccountStore';
 import { useCodebuddyAccountStore } from '../stores/useCodebuddyAccountStore';
 import { useCodebuddyCnAccountStore } from '../stores/useCodebuddyCnAccountStore';
 import { useQoderAccountStore } from '../stores/useQoderAccountStore';
@@ -204,6 +205,9 @@ export function DashboardPage({
         case 'gemini':
           await useGeminiAccountStore.getState().updateAccountTags(accountId, newTags);
           break;
+        case 'claude':
+          await useClaudeAccountStore.getState().updateAccountTags(accountId, newTags);
+          break;
         case 'codebuddy':
           await useCodebuddyAccountStore.getState().updateAccountTags(accountId, newTags);
           break;
@@ -346,6 +350,11 @@ export function DashboardPage({
   } = useCodebuddyCnAccountStore();
 
   const {
+    accounts: claudeAccounts,
+    fetchAccounts: fetchClaudeAccounts,
+  } = useClaudeAccountStore();
+
+  const {
     accounts: qoderAccounts,
     currentAccountId: qoderCurrentId,
     fetchAccounts: fetchQoderAccounts,
@@ -414,6 +423,7 @@ export function DashboardPage({
       fetchKiroAccounts,
       fetchCursorAccounts,
       fetchGeminiAccounts,
+      fetchClaudeAccounts,
       fetchCodebuddyAccounts,
       fetchCodebuddyCnAccounts,
       fetchQoderAccounts,
@@ -471,6 +481,7 @@ export function DashboardPage({
         agAccounts.length +
         codexAccounts.length +
         zedAccounts.length +
+        claudeAccounts.length +
         githubCopilotAccounts.length +
         windsurfAccounts.length +
         kiroAccounts.length +
@@ -484,6 +495,7 @@ export function DashboardPage({
       antigravity: agAccounts.length,
       codex: codexAccounts.length,
       zed: zedAccounts.length,
+      claude: claudeAccounts.length,
       githubCopilot: githubCopilotAccounts.length,
       windsurf: windsurfAccounts.length,
       kiro: kiroAccounts.length,
@@ -495,7 +507,7 @@ export function DashboardPage({
       trae: traeAccounts.length,
       workbuddy: workbuddyAccounts.length,
     };
-  }, [agAccounts, codexAccounts, zedAccounts, githubCopilotAccounts, windsurfAccounts, kiroAccounts, cursorAccounts, geminiAccounts, codebuddyAccounts, codebuddyCnAccounts, qoderAccounts, traeAccounts, workbuddyAccounts]);
+  }, [agAccounts, codexAccounts, zedAccounts, claudeAccounts, githubCopilotAccounts, windsurfAccounts, kiroAccounts, cursorAccounts, geminiAccounts, codebuddyAccounts, codebuddyCnAccounts, qoderAccounts, traeAccounts, workbuddyAccounts]);
 
   const dashboardAvailableTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -503,6 +515,7 @@ export function DashboardPage({
       ...agAccounts,
       ...codexAccounts,
       ...zedAccounts,
+      ...claudeAccounts,
       ...githubCopilotAccounts,
       ...windsurfAccounts,
       ...kiroAccounts,
@@ -522,7 +535,7 @@ export function DashboardPage({
       }
     }
     return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
-  }, [agAccounts, codexAccounts, zedAccounts, githubCopilotAccounts, windsurfAccounts, kiroAccounts, cursorAccounts, geminiAccounts, codebuddyAccounts, codebuddyCnAccounts, qoderAccounts, traeAccounts, workbuddyAccounts]);
+  }, [agAccounts, codexAccounts, zedAccounts, claudeAccounts, githubCopilotAccounts, windsurfAccounts, kiroAccounts, cursorAccounts, geminiAccounts, codebuddyAccounts, codebuddyCnAccounts, qoderAccounts, traeAccounts, workbuddyAccounts]);
 
 
   // Refresh States
@@ -532,6 +545,7 @@ export function DashboardPage({
     ag: boolean;
     codex: boolean;
     zed: boolean;
+    claude: boolean;
     githubCopilot: boolean;
     windsurf: boolean;
     kiro: boolean;
@@ -546,6 +560,7 @@ export function DashboardPage({
     ag: false,
     codex: false,
     zed: false,
+    claude: false,
     githubCopilot: false,
     windsurf: false,
     kiro: false,
@@ -2013,6 +2028,7 @@ export function DashboardPage({
   const platformCounts: Record<PlatformId, number> = {
     antigravity: stats.antigravity,
     codex: stats.codex,
+    claude: stats.claude,
     zed: stats.zed,
     'github-copilot': stats.githubCopilot,
     windsurf: stats.windsurf,

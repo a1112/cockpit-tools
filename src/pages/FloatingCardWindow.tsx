@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import {
   buildAntigravityAccountPresentation,
   buildCodebuddyAccountPresentation,
+  buildClaudeAccountPresentation,
   buildCodexAccountPresentation,
   buildCursorAccountPresentation,
   buildGeminiAccountPresentation,
@@ -37,6 +38,7 @@ import {
 import { useAccountStore } from '../stores/useAccountStore';
 import { useCodebuddyAccountStore } from '../stores/useCodebuddyAccountStore';
 import { useCodebuddyCnAccountStore } from '../stores/useCodebuddyCnAccountStore';
+import { useClaudeAccountStore } from '../stores/useClaudeAccountStore';
 import { useCodexAccountStore } from '../stores/useCodexAccountStore';
 import { useCursorAccountStore } from '../stores/useCursorAccountStore';
 import { useGeminiAccountStore } from '../stores/useGeminiAccountStore';
@@ -115,6 +117,7 @@ type FloatingCardAccount =
   | ReturnType<typeof useKiroAccountStore.getState>['accounts'][number]
   | ReturnType<typeof useCursorAccountStore.getState>['accounts'][number]
   | ReturnType<typeof useGeminiAccountStore.getState>['accounts'][number]
+  | ReturnType<typeof useClaudeAccountStore.getState>['accounts'][number]
   | ReturnType<typeof useCodebuddyAccountStore.getState>['accounts'][number]
   | ReturnType<typeof useCodebuddyCnAccountStore.getState>['accounts'][number]
   | ReturnType<typeof useQoderAccountStore.getState>['accounts'][number]
@@ -160,6 +163,8 @@ function resolveInstanceStoreApi(platformId: PlatformId): FloatingCardInstanceSt
       return useInstanceStore.getState();
     case 'codex':
       return useCodexInstanceStore.getState();
+    case 'claude':
+      return null;
     case 'github-copilot':
       return useGitHubCopilotInstanceStore.getState();
     case 'windsurf':
@@ -227,6 +232,10 @@ export function FloatingCardWindow() {
     accounts: codebuddyCnAccounts,
     currentAccountId: codebuddyCnCurrentId,
   } = useCodebuddyCnAccountStore();
+  const {
+    accounts: claudeAccounts,
+    currentAccountId: claudeCurrentId,
+  } = useClaudeAccountStore();
   const {
     accounts: qoderAccounts,
     currentAccountId: qoderCurrentId,
@@ -399,6 +408,9 @@ export function FloatingCardWindow() {
           break;
         case 'gemini':
           await useGeminiAccountStore.getState().fetchAccounts();
+          break;
+        case 'claude':
+          await useClaudeAccountStore.getState().fetchAccounts();
           break;
         case 'codebuddy':
           await useCodebuddyAccountStore.getState().fetchAccounts();
@@ -665,6 +677,10 @@ export function FloatingCardWindow() {
     () => resolveCurrentAccountById(codebuddyCnAccounts, codebuddyCnCurrentId),
     [codebuddyCnAccounts, codebuddyCnCurrentId],
   );
+  const claudeCurrent = useMemo(
+    () => resolveCurrentAccountById(claudeAccounts, claudeCurrentId),
+    [claudeAccounts, claudeCurrentId],
+  );
   const qoderCurrent = useMemo(
     () => resolveCurrentAccountById(qoderAccounts, qoderCurrentId),
     [qoderAccounts, qoderCurrentId],
@@ -729,6 +745,11 @@ export function FloatingCardWindow() {
           accounts: codebuddyCnAccounts,
           actualCurrentAccount: codebuddyCnCurrent,
         };
+      case 'claude':
+        return {
+          accounts: claudeAccounts,
+          actualCurrentAccount: claudeCurrent,
+        };
       case 'qoder':
         return {
           accounts: qoderAccounts,
@@ -757,6 +778,8 @@ export function FloatingCardWindow() {
     codebuddyCnAccounts,
     codebuddyCnCurrent,
     codebuddyCurrent,
+    claudeAccounts,
+    claudeCurrent,
     codexAccounts,
     codexCurrent,
     cursorAccounts,
@@ -811,6 +834,8 @@ export function FloatingCardWindow() {
         return getRecommendedCodebuddyAccount(codebuddyAccounts, effectiveCurrentId);
       case 'codebuddy_cn':
         return getRecommendedCodebuddyCnAccount(codebuddyCnAccounts, effectiveCurrentId);
+      case 'claude':
+        return resolveCurrentOrMostRecentAccount(claudeAccounts, effectiveCurrentId);
       case 'qoder':
         return getRecommendedQoderAccount(qoderAccounts, effectiveCurrentId);
       case 'trae':
@@ -824,6 +849,7 @@ export function FloatingCardWindow() {
     agAccounts,
     codebuddyAccounts,
     codebuddyCnAccounts,
+    claudeAccounts,
     codexAccounts,
     currentAccount?.id,
     cursorAccounts,
@@ -895,6 +921,8 @@ export function FloatingCardWindow() {
         return buildCodebuddyAccountPresentation(viewedAccount as typeof codebuddyAccounts[number], t);
       case 'codebuddy_cn':
         return buildCodebuddyAccountPresentation(viewedAccount as typeof codebuddyCnAccounts[number], t);
+      case 'claude':
+        return buildClaudeAccountPresentation(viewedAccount as typeof claudeAccounts[number], t);
       case 'qoder':
         return buildQoderAccountPresentation(viewedAccount as typeof qoderAccounts[number], t);
       case 'trae':
@@ -908,6 +936,7 @@ export function FloatingCardWindow() {
     agAccounts,
     codebuddyAccounts,
     codebuddyCnAccounts,
+    claudeAccounts,
     codexAccounts,
     cursorAccounts,
     displayGroups,
@@ -984,6 +1013,9 @@ export function FloatingCardWindow() {
             break;
           case 'codebuddy_cn':
             await useCodebuddyCnAccountStore.getState().refreshToken(viewedAccount.id);
+            break;
+          case 'claude':
+            await useClaudeAccountStore.getState().refreshToken(viewedAccount.id);
             break;
           case 'qoder':
             await useQoderAccountStore.getState().refreshToken(viewedAccount.id);
@@ -1091,6 +1123,9 @@ export function FloatingCardWindow() {
             break;
           case 'codebuddy_cn':
             await useCodebuddyCnAccountStore.getState().switchAccount(viewedAccount.id);
+            break;
+          case 'claude':
+            await useClaudeAccountStore.getState().switchAccount(viewedAccount.id);
             break;
           case 'qoder':
             await useQoderAccountStore.getState().switchAccount(viewedAccount.id);

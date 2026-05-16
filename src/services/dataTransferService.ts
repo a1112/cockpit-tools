@@ -54,6 +54,7 @@ import * as cursorService from './cursorService';
 import * as geminiService from './geminiService';
 import * as codebuddyService from './codebuddyService';
 import * as codebuddyCnService from './codebuddyCnService';
+import * as claudeService from './claudeService';
 import * as qoderService from './qoderService';
 import * as traeService from './traeService';
 import * as workbuddyService from './workbuddyService';
@@ -262,6 +263,7 @@ const ACCOUNT_LOADERS: Record<PlatformId, AccountLoader> = {
   codebuddy: async () => (await codebuddyService.listCodebuddyAccounts()) as unknown as TransferAccountRecord[],
   codebuddy_cn: async () =>
     (await codebuddyCnService.listCodebuddyCnAccounts()) as unknown as TransferAccountRecord[],
+  claude: async () => (await claudeService.listClaudeAccounts()) as unknown as TransferAccountRecord[],
   qoder: async () => (await qoderService.listQoderAccounts()) as unknown as TransferAccountRecord[],
   trae: async () => (await traeService.listTraeAccounts()) as unknown as TransferAccountRecord[],
   workbuddy: async () => (await workbuddyService.listWorkbuddyAccounts()) as unknown as TransferAccountRecord[],
@@ -278,6 +280,7 @@ const LEGACY_IMPORTERS: Record<PlatformId, ((jsonContent: string) => Promise<unk
   gemini: geminiService.importGeminiFromJson,
   codebuddy: codebuddyService.importCodebuddyFromJson,
   codebuddy_cn: codebuddyCnService.importCodebuddyCnFromJson,
+  claude: claudeService.importClaudeFromJson,
   qoder: qoderService.importQoderFromJson,
   trae: traeService.importTraeFromJson,
   workbuddy: workbuddyService.importWorkbuddyFromJson,
@@ -416,8 +419,10 @@ function buildAccountRef(platform: PlatformId, account: TransferAccountRecord): 
       break;
     case 'cursor':
     case 'gemini':
+    case 'claude':
       ref.email = normalizeString(account.email) ?? undefined;
       ref.authId = normalizeString(account.auth_id) ?? undefined;
+      ref.apiBaseUrl = normalizeString(account.base_url) ?? undefined;
       break;
     case 'qoder':
     case 'trae':
@@ -485,8 +490,10 @@ function scoreAccountRef(ref: DataTransferAccountRef, account: TransferAccountRe
       break;
     case 'cursor':
     case 'gemini':
+    case 'claude':
       addStringScore(ref.authId, account.auth_id, 24);
       addStringScore(ref.email, account.email, 10);
+      addStringScore(ref.apiBaseUrl, account.base_url, 6);
       break;
     case 'qoder':
     case 'trae':

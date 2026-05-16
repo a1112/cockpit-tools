@@ -72,6 +72,9 @@ const AccountsPage = lazy(() =>
 const CodexAccountsPage = lazy(() =>
   import('./pages/CodexAccountsPage').then((module) => ({ default: module.CodexAccountsPage })),
 );
+const ClaudeAccountsPage = lazy(() =>
+  import('./pages/ClaudeAccountsPage').then((module) => ({ default: module.ClaudeAccountsPage })),
+);
 const GitHubCopilotAccountsPage = lazy(() =>
   import('./pages/GitHubCopilotAccountsPage').then((module) => ({
     default: module.GitHubCopilotAccountsPage,
@@ -3159,6 +3162,7 @@ function MainApp() {
           )}
           {page === 'overview' && <AccountsPage onNavigate={setPage} />}
           {page === 'codex' && <CodexAccountsPage />}
+          {page === 'claude' && <ClaudeAccountsPage />}
           {page === 'github-copilot' && <GitHubCopilotAccountsPage />}
           {page === 'windsurf' && <WindsurfAccountsPage />}
           {page === 'kiro' && <KiroAccountsPage />}

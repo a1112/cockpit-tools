@@ -8,6 +8,7 @@ import * as cursorService from './cursorService';
 import * as geminiService from './geminiService';
 import * as codebuddyService from './codebuddyService';
 import * as codebuddyCnService from './codebuddyCnService';
+import * as claudeService from './claudeService';
 import * as qoderService from './qoderService';
 import * as traeService from './traeService';
 import * as workbuddyService from './workbuddyService';
@@ -71,6 +72,11 @@ const PLATFORM_ADAPTERS: Record<PlatformId, TransferAdapter> = {
     listAccounts: codebuddyCnService.listCodebuddyCnAccounts,
     exportAccounts: codebuddyCnService.exportCodebuddyCnAccounts,
     importFromJson: codebuddyCnService.importCodebuddyCnFromJson,
+  },
+  claude: {
+    listAccounts: claudeService.listClaudeAccounts,
+    exportAccounts: claudeService.exportClaudeAccounts,
+    importFromJson: claudeService.importClaudeFromJson,
   },
   qoder: {
     listAccounts: qoderService.listQoderAccounts,

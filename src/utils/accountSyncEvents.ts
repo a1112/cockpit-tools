@@ -15,6 +15,8 @@ export type AccountSyncEventPayload = {
 const PROVIDER_PAGE_PLATFORM_MAP: Record<string, PlatformId> = {
   antigravity: 'antigravity',
   codex: 'codex',
+  claude: 'claude',
+  anthropic: 'claude',
   zed: 'zed',
   githubcopilot: 'github-copilot',
   github_copilot: 'github-copilot',

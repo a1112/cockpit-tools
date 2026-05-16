@@ -4,6 +4,7 @@ import type {
   CodebuddyOfficialQuotaResource,
 } from "../types/codebuddy";
 import type { CodexAccount } from "../types/codex";
+import type { ClaudeAccount } from "../types/claude";
 import type { GitHubCopilotAccount } from "../types/githubCopilot";
 import type { WindsurfAccount } from "../types/windsurf";
 import type { CursorAccount } from "../types/cursor";
@@ -42,6 +43,10 @@ import {
   isCodexApiKeyAccount,
   isCodexNewApiAccount,
 } from "../types/codex";
+import {
+  getClaudeAccountDisplayEmail,
+  getClaudePlanBadge,
+} from "../types/claude";
 import {
   formatGitHubCopilotResetTime,
   getGitHubCopilotPlanBadge,
@@ -1184,6 +1189,40 @@ export function buildQoderAccountPresentation(
     cycleText: shouldShowQoderSubscriptionReset(subscription)
       ? formatMetricResetText(subscription.expiresAt, t)
       : "",
+  };
+}
+
+export function buildClaudeAccountPresentation(
+  account: ClaudeAccount,
+  t: Translate,
+): UnifiedAccountPresentation {
+  return {
+    id: account.id,
+    displayName: getClaudeAccountDisplayEmail(account),
+    planLabel: getClaudePlanBadge(account),
+    planClass: "unknown",
+    quotaItems: [
+      {
+        key: "provider",
+        label: t("claude.provider", "Provider"),
+        percentage: 100,
+        progressPercent: 100,
+        quotaClass: "high",
+        valueText: account.base_url || "https://api.anthropic.com",
+        showProgress: false,
+      },
+      {
+        key: "model",
+        label: t("claude.model", "模型"),
+        percentage: 100,
+        progressPercent: 100,
+        quotaClass: "high",
+        valueText: account.model || "--",
+        showProgress: false,
+      },
+    ],
+    sublineText: t("claude.injectTarget", "Claude Code settings.json"),
+    sublineClass: "normal",
   };
 }
 
