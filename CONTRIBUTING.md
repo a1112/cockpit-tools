@@ -60,7 +60,7 @@ Please be respectful and professional in all interactions. We follow the [Contri
 
 | Command | Description |
 |---------|-------------|
-| `npm run tauri dev` | Start development server (port 1420) |
+| `npm run tauri dev` | Start development server (port 16030) |
 | `npm run typecheck` | Run TypeScript type checking (auto-runs before build) |
 | `npm run build` | Build frontend (syncs version + typecheck + vite build) |
 | `npm run sync-version` | Sync `package.json` version to Tauri config |
