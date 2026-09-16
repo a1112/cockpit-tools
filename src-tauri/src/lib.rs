@@ -67,6 +67,7 @@ pub fn run() {
     }
 
     let app = tauri::Builder::default()
+        .plugin(project_resource_monitor::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
@@ -289,6 +290,7 @@ pub fn run() {
             _ => {}
         })
         .invoke_handler(tauri::generate_handler![
+            project_resource_monitor::project_resource_snapshot,
             // Account Commands
             commands::account::list_accounts,
             commands::account::add_account,
@@ -864,3 +866,5 @@ pub fn run() {
         }
     });
 }
+
+mod project_resource_monitor;
