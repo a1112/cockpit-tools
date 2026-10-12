@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS hat die Steuerung von {{target}} über Bedienungshilfen blockiert. Erteile der anfragenden App unter Systemeinstellungen > Datenschutz & Sicherheit > Bedienungshilfen die Berechtigung und versuche es erneut. Verwende unter macOS 12 Systemeinstellungen > Sicherheit & Datenschutz. Du kannst die Ziel-App auch manuell in den Vordergrund bringen oder schließen.",
     "targetUnavailable": "macOS konnte {{target}} nicht finden oder erreichen. Prüfe, ob die App installiert ist und ausgeführt wird, und versuche es erneut.",
     "failed": "{{target}} konnte nicht gesteuert werden: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Status der macOS-Mitteilungen",
+    "quotaSource": "Kontingentwarnung",
+    "floatingSource": "Erinnerung der schwebenden Karte",
+    "submitted": "An die Mitteilungs-API übermittelt; die Zustellung ist nicht bestätigt.",
+    "identityFailed": "Die Einrichtung der Identität für Mitteilungen ist fehlgeschlagen. Es wurde keine Mitteilung übermittelt. Beende die installierte App und öffne sie vor der nächsten beabsichtigten Mitteilung erneut.",
+    "submissionFailed": "Die Übermittlung der Mitteilung ist fehlgeschlagen. Daraus lässt sich nicht ableiten, dass die Berechtigung verweigert wurde.",
+    "unverified": "Diese App kann weder die Berechtigung für native Mitteilungen noch deren Anzeige überprüfen. Eine erfolgreiche Übermittlung bedeutet nicht, dass ein Banner angezeigt wurde.",
+    "guidance": "Öffne Systemeinstellungen > Mitteilungen > Cockpit Tools und überprüfe „Mitteilungen erlauben“ und die Hinweisoptionen. Überprüfe anschließend „Fokus“. Verwende unter macOS 12 Systemeinstellungen > Mitteilungen & Fokus. Entwicklungsversionen können eine andere App-Identität verwenden.",
+    "readFailed": "Das in der App gespeicherte Mitteilungsergebnis konnte nicht gelesen werden. Beim Aktualisieren wird weder eine Mitteilung gesendet noch werden macOS-Berechtigungen geprüft.",
+    "noAttempts": "In dieser App-Sitzung wurde kein Versuch einer nativen Mitteilung aufgezeichnet.",
+    "refresh": "Ergebnis in der App aktualisieren",
+    "viewQuotas": "Kontingente in der App anzeigen",
+    "showFloatingCard": "Schwebende Karte anzeigen",
+    "floatingFailed": "Die schwebende Karte konnte nicht erneut geöffnet werden. Versuche es über die Einstellungen erneut.",
+    "sessionOnly": "Ergebnisse werden für die Dauer dieser App-Sitzung aufbewahrt. Die Mitteilungseinstellungen bleiben unverändert."
   }
 }

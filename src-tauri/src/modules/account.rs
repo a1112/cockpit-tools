@@ -1609,27 +1609,13 @@ pub fn send_quota_alert_native_notification(payload: &QuotaAlertPayload) {
     let Some(app_handle) = crate::get_app_handle() else {
         return;
     };
-    let bundle_identifier = app_handle.config().identifier.to_string();
     let (title, body) = build_quota_alert_notification_text(payload);
-
-    std::thread::spawn(move || {
-        let mut notification = mac_notification_sys::Notification::new();
-        // Fire-and-forget on macOS. Waiting for clicks keeps a dedicated run loop alive
-        // inside mac-notification-sys, which can cause persistent background energy usage.
-        notification
-            .title(title.as_str())
-            .message(body.as_str())
-            .wait_for_click(false)
-            .asynchronous(true);
-
-        if let Err(e) = mac_notification_sys::set_application(&bundle_identifier) {
-            modules::logger::log_warn(&format!("[QuotaAlert] 设置通知应用标识失败: {}", e));
-        }
-
-        if let Err(e) = notification.send() {
-            modules::logger::log_warn(&format!("[QuotaAlert] 原生通知发送失败: {}", e));
-        }
-    });
+    modules::macos_notifications::submit(
+        app_handle,
+        modules::notification_feedback::Source::QuotaAlert,
+        title,
+        body,
+    );
 }
 
 pub fn dispatch_quota_alert(payload: &QuotaAlertPayload) {

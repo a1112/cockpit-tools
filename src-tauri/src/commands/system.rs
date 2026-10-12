@@ -2038,6 +2038,20 @@ pub fn handle_window_close(
     Ok(())
 }
 
+/// Read retained submission results only; this never requests permission or
+/// submits a notification. Non-macOS callers have no macOS feedback.
+#[tauri::command]
+pub fn get_macos_notification_feedback() -> Option<serde_json::Value> {
+    #[cfg(target_os = "macos")]
+    {
+        Some(modules::macos_notifications::snapshot())
+    }
+    #[cfg(not(target_os = "macos"))]
+    {
+        None
+    }
+}
+
 #[tauri::command]
 pub fn show_floating_card_window(app: tauri::AppHandle) -> Result<(), String> {
     modules::floating_card_window::show_floating_card_window(&app, true)

@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS zablokował sterowanie aplikacją {{target}} za pomocą funkcji dostępności. W Ustawienia systemowe > Prywatność i ochrona > Dostępność nadaj uprawnienie aplikacji, która o nie prosi, a następnie spróbuj ponownie. W macOS 12 wybierz Preferencje systemowe > Ochrona i prywatność. Możesz też ręcznie przenieść aplikację docelową na pierwszy plan lub ją zamknąć.",
     "targetUnavailable": "macOS nie mógł znaleźć aplikacji {{target}} lub nawiązać z nią połączenia. Sprawdź, czy aplikacja jest zainstalowana i uruchomiona, a następnie spróbuj ponownie.",
     "failed": "Nie można sterować aplikacją {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Stan powiadomień macOS",
+    "quotaSource": "Alert dotyczący limitu",
+    "floatingSource": "Przypomnienie z pływającej karty",
+    "submitted": "Przekazano do API powiadomień; dostarczenie nie zostało potwierdzone.",
+    "identityFailed": "Nie udało się skonfigurować tożsamości dla powiadomień. Nie przekazano żadnego powiadomienia. Przed kolejnym zamierzonym powiadomieniem zakończ działanie zainstalowanej aplikacji i otwórz ją ponownie.",
+    "submissionFailed": "Nie udało się przekazać powiadomienia. Nie oznacza to, że odmówiono uprawnienia.",
+    "unverified": "Ta aplikacja nie może zweryfikować uprawnień do natywnych powiadomień ani ich wyświetlenia. Pomyślne przekazanie nie oznacza, że pojawił się baner.",
+    "guidance": "Otwórz Ustawienia systemowe > Powiadomienia > Cockpit Tools i sprawdź opcję Dopuszczaj powiadomienia oraz opcje alertów, a następnie sprawdź Tryb skupienia. W macOS 12 użyj Preferencje systemowe > Powiadomienia i tryb skupienia. Wersje deweloperskie mogą używać innej tożsamości aplikacji.",
+    "readFailed": "Nie udało się odczytać wyniku powiadomienia zapisanego w aplikacji. Odświeżenie nie wysyła powiadomienia ani nie sprawdza uprawnień macOS.",
+    "noAttempts": "W tej sesji aplikacji nie zarejestrowano żadnej próby wysłania natywnego powiadomienia.",
+    "refresh": "Odśwież wynik w aplikacji",
+    "viewQuotas": "Wyświetl limity w aplikacji",
+    "showFloatingCard": "Pokaż pływającą kartę",
+    "floatingFailed": "Nie udało się ponownie otworzyć pływającej karty. Spróbuj ponownie w Ustawieniach.",
+    "sessionOnly": "Wyniki są przechowywane przez czas trwania tej sesji aplikacji. Preferencje powiadomień nie zostały zmienione."
   }
 }

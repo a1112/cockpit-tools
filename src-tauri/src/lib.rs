@@ -66,7 +66,8 @@ pub fn run() {
         }
     }
 
-    let app = tauri::Builder::default().plugin(project_window_chrome::init())
+    let app = tauri::Builder::default()
+        .plugin(project_window_chrome::init())
         .plugin(project_resource_monitor::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
@@ -371,6 +372,7 @@ pub fn run() {
             commands::system::get_network_config,
             commands::system::save_network_config,
             commands::system::get_general_config,
+            commands::system::get_macos_notification_feedback,
             commands::system::get_available_terminals,
             commands::system::save_general_config,
             commands::system::save_tray_platform_layout,

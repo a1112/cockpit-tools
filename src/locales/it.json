@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS ha bloccato il controllo di {{target}} tramite le funzioni di accessibilità. In Impostazioni di Sistema > Privacy e sicurezza > Accessibilità, autorizza l’app che lo richiede, quindi riprova. Su macOS 12, usa Preferenze di Sistema > Sicurezza e Privacy. Puoi anche portare l’app di destinazione in primo piano o chiuderla manualmente.",
     "targetUnavailable": "macOS non ha trovato {{target}} o non è riuscito a comunicare con l’app. Verifica che l’app sia installata e in esecuzione, quindi riprova.",
     "failed": "Impossibile controllare {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Stato delle notifiche macOS",
+    "quotaSource": "Avviso di quota",
+    "floatingSource": "Promemoria della scheda mobile",
+    "submitted": "Inviata all’API delle notifiche; la consegna non è confermata.",
+    "identityFailed": "La configurazione dell’identità per le notifiche non è riuscita. Non è stata inviata alcuna notifica. Esci dall’app installata e riaprila prima della prossima notifica che intendi inviare.",
+    "submissionFailed": "L’invio della notifica non è riuscito. Questo non dimostra che l’autorizzazione sia stata negata.",
+    "unverified": "Questa app non può verificare l’autorizzazione o la visualizzazione delle notifiche native. Un invio riuscito non significa che sia apparso un banner.",
+    "guidance": "Apri Impostazioni di Sistema > Notifiche > Cockpit Tools e controlla Consenti notifiche e le opzioni di avviso, quindi controlla Full immersion. Su macOS 12, usa Preferenze di Sistema > Notifiche e Full immersion. Le versioni di sviluppo possono usare un’identità dell’app diversa.",
+    "readFailed": "Impossibile leggere il risultato della notifica salvato nell’app. L’aggiornamento non invia notifiche e non controlla le autorizzazioni di macOS.",
+    "noAttempts": "Non è stato registrato alcun tentativo di notifica nativa in questa sessione dell’app.",
+    "refresh": "Aggiorna il risultato nell’app",
+    "viewQuotas": "Visualizza le quote nell’app",
+    "showFloatingCard": "Mostra scheda mobile",
+    "floatingFailed": "Impossibile riaprire la scheda mobile. Riprova dalle Impostazioni.",
+    "sessionOnly": "I risultati vengono conservati per questa sessione dell’app. Le preferenze delle notifiche restano invariate."
   }
 }

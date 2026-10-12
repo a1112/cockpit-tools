@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS zablokoval ovládání aplikace {{target}} pomocí funkcí zpřístupnění. V Nastavení systému > Soukromí a zabezpečení > Zpřístupnění udělte žádající aplikaci oprávnění a zkuste to znovu. V macOS 12 použijte Předvolby systému > Zabezpečení a soukromí. Cílovou aplikaci můžete také ručně přenést do popředí nebo zavřít.",
     "targetUnavailable": "macOS nemohl najít aplikaci {{target}} nebo s ní navázat spojení. Zkontrolujte, zda je aplikace nainstalovaná a spuštěná, a zkuste to znovu.",
     "failed": "Aplikaci {{target}} se nepodařilo ovládat: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Stav oznámení macOS",
+    "quotaSource": "Upozornění na kvótu",
+    "floatingSource": "Připomenutí z plovoucí karty",
+    "submitted": "Předáno rozhraní API pro oznámení; doručení není potvrzeno.",
+    "identityFailed": "Nastavení identity pro oznámení selhalo. Žádné oznámení nebylo předáno. Před dalším zamýšleným oznámením ukončete nainstalovanou aplikaci a znovu ji otevřete.",
+    "submissionFailed": "Předání oznámení selhalo. To neprokazuje, že bylo oprávnění zamítnuto.",
+    "unverified": "Tato aplikace nemůže ověřit oprávnění k nativním oznámením ani jejich zobrazení. Úspěšné předání neznamená, že se zobrazil banner.",
+    "guidance": "Otevřete Nastavení systému > Oznámení > Cockpit Tools a zkontrolujte volbu Povolit oznámení a možnosti upozornění. Poté zkontrolujte Soustředění. V macOS 12 použijte Předvolby systému > Oznámení a soustředění. Vývojové verze mohou používat jinou identitu aplikace.",
+    "readFailed": "Uložený výsledek oznámení v aplikaci se nepodařilo načíst. Obnovení neodešle oznámení ani nezkontroluje oprávnění macOS.",
+    "noAttempts": "V této relaci aplikace nebyl zaznamenán žádný pokus o nativní oznámení.",
+    "refresh": "Obnovit výsledek v aplikaci",
+    "viewQuotas": "Zobrazit kvóty v aplikaci",
+    "showFloatingCard": "Zobrazit plovoucí kartu",
+    "floatingFailed": "Plovoucí kartu se nepodařilo znovu otevřít. Zkuste to znovu v Nastavení.",
+    "sessionOnly": "Výsledky jsou uchovávány po dobu této relace aplikace. Předvolby oznámení se nezměnily."
   }
 }

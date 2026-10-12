@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "O macOS bloqueou o controle de {{target}} pelos recursos de acessibilidade. Em Ajustes do Sistema > Privacidade e Segurança > Acessibilidade, conceda a permissão ao app que a solicita e tente novamente. No macOS 12, use Preferências do Sistema > Segurança e Privacidade. Você também pode trazer o app de destino para o primeiro plano ou fechá-lo manualmente.",
     "targetUnavailable": "O macOS não conseguiu encontrar {{target}} ou se comunicar com o app. Verifique se o app está instalado e em execução e tente novamente.",
     "failed": "Não foi possível controlar {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Status das notificações do macOS",
+    "quotaSource": "Alerta de cota",
+    "floatingSource": "Lembrete do cartão flutuante",
+    "submitted": "Enviada à API de notificações; a entrega não foi confirmada.",
+    "identityFailed": "Falha ao configurar a identidade para notificações. Nenhuma notificação foi enviada. Encerre o app instalado e abra-o novamente antes da próxima notificação que quiser enviar.",
+    "submissionFailed": "Falha ao enviar a notificação. Isso não comprova que a permissão foi negada.",
+    "unverified": "Este app não consegue verificar a autorização nem a exibição de notificações nativas. Um envio bem-sucedido não significa que um banner apareceu.",
+    "guidance": "Abra Ajustes do Sistema > Notificações > Cockpit Tools e verifique Permitir Notificações e as opções de alerta. Em seguida, verifique Foco. No macOS 12, use Preferências do Sistema > Notificações e Foco. Versões de desenvolvimento podem usar uma identidade de app diferente.",
+    "readFailed": "Não foi possível ler o resultado da notificação salvo no app. Atualizar não envia uma notificação nem verifica as permissões do macOS.",
+    "noAttempts": "Nenhuma tentativa de notificação nativa foi registrada nesta sessão do app.",
+    "refresh": "Atualizar resultado no app",
+    "viewQuotas": "Ver cotas no app",
+    "showFloatingCard": "Mostrar cartão flutuante",
+    "floatingFailed": "Não foi possível reabrir o cartão flutuante. Tente novamente pelos Ajustes.",
+    "sessionOnly": "Os resultados são mantidos durante esta sessão do app. As preferências de notificação não foram alteradas."
   }
 }

@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS ha bloqueado el control de {{target}} mediante las funciones de accesibilidad. En Ajustes del Sistema > Privacidad y seguridad > Accesibilidad, concede el permiso a la app que lo solicita y vuelve a intentarlo. En macOS 12, ve a Preferencias del Sistema > Seguridad y privacidad. También puedes traer la app de destino al primer plano o cerrarla manualmente.",
     "targetUnavailable": "macOS no ha podido encontrar {{target}} o comunicarse con ella. Comprueba que la app esté instalada y en ejecución y vuelve a intentarlo.",
     "failed": "No se ha podido controlar {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Estado de las notificaciones de macOS",
+    "quotaSource": "Alerta de cuota",
+    "floatingSource": "Recordatorio de la tarjeta flotante",
+    "submitted": "Enviada a la API de notificaciones; la entrega no está confirmada.",
+    "identityFailed": "No se pudo configurar la identidad para las notificaciones. No se envió ninguna notificación. Sal de la app instalada y vuelve a abrirla antes de la próxima notificación que quieras enviar.",
+    "submissionFailed": "No se pudo enviar la notificación. Esto no demuestra que se haya denegado el permiso.",
+    "unverified": "Esta app no puede verificar la autorización ni la visualización de las notificaciones nativas. Un envío correcto no significa que haya aparecido una tira de notificación.",
+    "guidance": "Abre Ajustes del Sistema > Notificaciones > Cockpit Tools y revisa Permitir notificaciones y las opciones de aviso. Después, revisa Modos de concentración. En macOS 12, usa Preferencias del Sistema > Notificaciones y concentración. Las versiones de desarrollo pueden usar una identidad de app distinta.",
+    "readFailed": "No se pudo leer el resultado de la notificación guardado en la app. Actualizar no envía ninguna notificación ni comprueba los permisos de macOS.",
+    "noAttempts": "No se ha registrado ningún intento de notificación nativa en esta sesión de la app.",
+    "refresh": "Actualizar resultado en la app",
+    "viewQuotas": "Ver cuotas en la app",
+    "showFloatingCard": "Mostrar tarjeta flotante",
+    "floatingFailed": "No se pudo volver a abrir la tarjeta flotante. Inténtalo de nuevo desde Ajustes.",
+    "sessionOnly": "Los resultados se conservan durante esta sesión de la app. Las preferencias de notificaciones no han cambiado."
   }
 }

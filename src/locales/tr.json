@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS, {{target}} uygulamasının erişilebilirlik özellikleriyle denetlenmesini engelledi. Sistem Ayarları > Gizlilik ve Güvenlik > Erişilebilirlik bölümünde izin isteyen uygulamaya izin verin ve yeniden deneyin. macOS 12’de Sistem Tercihleri > Güvenlik ve Gizlilik bölümünü kullanın. Hedef uygulamayı elle ön plana getirebilir veya kapatabilirsiniz.",
     "targetUnavailable": "macOS, {{target}} uygulamasını bulamadı veya uygulamayla iletişim kuramadı. Uygulamanın yüklü ve çalışır durumda olduğunu kontrol edip yeniden deneyin.",
     "failed": "{{target}} denetlenemedi: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "macOS bildirim durumu",
+    "quotaSource": "Kota uyarısı",
+    "floatingSource": "Yüzen kart anımsatıcısı",
+    "submitted": "Bildirim API’sine gönderildi; teslim edildiği doğrulanmadı.",
+    "identityFailed": "Bildirim kimliği ayarlanamadı. Hiçbir bildirim gönderilmedi. Bir sonraki bildirimi göndermeden önce yüklü uygulamadan çıkıp uygulamayı yeniden açın.",
+    "submissionFailed": "Bildirim gönderilemedi. Bu, iznin reddedildiğini göstermez.",
+    "unverified": "Bu uygulama yerel bildirim iznini veya bildirimlerin gösterilip gösterilmediğini doğrulayamaz. Gönderimin başarılı olması bir başlığın görüntülendiği anlamına gelmez.",
+    "guidance": "Sistem Ayarları > Bildirimler > Cockpit Tools’u açın, Bildirimlere izin ver seçeneğini ve uyarı seçeneklerini kontrol edin, ardından Odak’ı kontrol edin. macOS 12’de Sistem Tercihleri > Bildirimler ve Odak’ı kullanın. Geliştirme derlemeleri farklı bir uygulama kimliği kullanabilir.",
+    "readFailed": "Uygulama içinde kaydedilen bildirim sonucu okunamadı. Yenileme işlemi bildirim göndermez veya macOS izinlerini kontrol etmez.",
+    "noAttempts": "Bu uygulama oturumunda herhangi bir yerel bildirim girişimi kaydedilmedi.",
+    "refresh": "Uygulama içi sonucu yenile",
+    "viewQuotas": "Uygulama içi kotaları görüntüle",
+    "showFloatingCard": "Yüzen kartı göster",
+    "floatingFailed": "Yüzen kart yeniden açılamadı. Tekrar denemek için Ayarlar’ı kullanın.",
+    "sessionOnly": "Sonuçlar bu uygulama oturumu boyunca saklanır. Bildirim tercihleri değiştirilmedi."
   }
 }

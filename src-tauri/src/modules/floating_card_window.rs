@@ -513,22 +513,10 @@ fn send_hidden_notification<R: Runtime>(app: &AppHandle<R>) {
     let locale = config::get_user_config().language;
     let title = i18n::translate(&locale, "floatingCard.hiddenNotification.title", &[]);
     let body = i18n::translate(&locale, "floatingCard.hiddenNotification.body", &[]);
-    let bundle_identifier = app.config().identifier.to_string();
-
-    std::thread::spawn(move || {
-        let mut notification = mac_notification_sys::Notification::new();
-        notification
-            .title(title.as_str())
-            .message(body.as_str())
-            .wait_for_click(false)
-            .asynchronous(true);
-
-        if let Err(err) = mac_notification_sys::set_application(&bundle_identifier) {
-            logger::log_warn(&format!("[FloatingCard] 设置通知应用标识失败: {}", err));
-        }
-
-        if let Err(err) = notification.send() {
-            logger::log_warn(&format!("[FloatingCard] 发送关闭引导通知失败: {}", err));
-        }
-    });
+    crate::modules::macos_notifications::submit(
+        app,
+        crate::modules::notification_feedback::Source::FloatingCardHidden,
+        title,
+        body,
+    );
 }

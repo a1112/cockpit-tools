@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS a bloqué le contrôle de {{target}} via les fonctions d’accessibilité. Dans Réglages Système > Confidentialité et sécurité > Accessibilité, autorisez l’app à l’origine de la demande, puis réessayez. Sous macOS 12, ouvrez Préférences Système > Sécurité et confidentialité. Vous pouvez aussi placer l’app cible au premier plan ou la fermer manuellement.",
     "targetUnavailable": "macOS n’a pas pu trouver {{target}} ou communiquer avec cette app. Vérifiez qu’elle est installée et en cours d’exécution, puis réessayez.",
     "failed": "Impossible de contrôler {{target}} : {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "État des notifications macOS",
+    "quotaSource": "Alerte de quota",
+    "floatingSource": "Rappel de la carte flottante",
+    "submitted": "Transmise à l’API de notifications ; la réception n’est pas confirmée.",
+    "identityFailed": "La configuration de l’identité pour les notifications a échoué. Aucune notification n’a été transmise. Quittez l’app installée et rouvrez-la avant la prochaine notification que vous souhaitez envoyer.",
+    "submissionFailed": "La transmission de la notification a échoué. Cela ne permet pas de conclure que l’autorisation a été refusée.",
+    "unverified": "Cette app ne peut vérifier ni l’autorisation des notifications natives ni leur affichage. Une transmission réussie ne signifie pas qu’une bannière s’est affichée.",
+    "guidance": "Ouvrez Réglages Système > Notifications > Cockpit Tools et vérifiez Autoriser les notifications ainsi que les options d’alerte, puis vérifiez Concentration. Sous macOS 12, utilisez Préférences Système > Notifications et concentration. Les versions de développement peuvent utiliser une identité d’app différente.",
+    "readFailed": "Le résultat de notification enregistré dans l’app n’a pas pu être lu. L’actualisation n’envoie aucune notification et ne vérifie pas les autorisations macOS.",
+    "noAttempts": "Aucune tentative de notification native n’a été enregistrée au cours de cette session de l’app.",
+    "refresh": "Actualiser le résultat dans l’app",
+    "viewQuotas": "Voir les quotas dans l’app",
+    "showFloatingCard": "Afficher la carte flottante",
+    "floatingFailed": "La carte flottante n’a pas pu être rouverte. Réessayez depuis les réglages.",
+    "sessionOnly": "Les résultats sont conservés pendant cette session de l’app. Les préférences de notification restent inchangées."
   }
 }

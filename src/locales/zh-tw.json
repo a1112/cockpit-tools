@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS 已阻擋透過輔助使用控制 {{target}}。請前往「系統設定」>「隱私權與安全性」>「輔助使用」，授權提出要求的 App，然後再試一次。在 macOS 12 中，請前往「系統偏好設定」>「安全性與隱私權」。你也可以手動將目標 App 切換至前景或關閉它。",
     "targetUnavailable": "macOS 找不到 {{target}} 或無法與其通訊。請確認該 App 已安裝且正在執行，然後再試一次。",
     "failed": "無法控制 {{target}}：{{detail}}"
+  },
+  "macosNotifications": {
+    "title": "macOS 通知狀態",
+    "quotaSource": "配額提醒",
+    "floatingSource": "浮動卡片提醒",
+    "submitted": "已提交通知 API；是否送達尚未確認。",
+    "identityFailed": "通知識別身分設定失敗。未提交任何通知。請在下次需要傳送通知前結束並重新開啟已安裝的 App。",
+    "submissionFailed": "通知提交失敗。這並不代表通知權限已遭拒絕。",
+    "unverified": "此 App 無法驗證原生通知的授權或顯示情況。提交成功並不表示橫幅已顯示。",
+    "guidance": "開啟「系統設定」>「通知」>「Cockpit Tools」，檢查「允許通知」和提示選項，然後檢查「專注模式」。在 macOS 12 上，請使用「系統偏好設定」>「通知與專注模式」。開發版本可能使用不同的 App 識別身分。",
+    "readFailed": "無法讀取儲存在 App 內的通知結果。重新整理不會傳送通知，也不會檢查 macOS 權限。",
+    "noAttempts": "本次 App 工作階段尚未記錄任何原生通知嘗試。",
+    "refresh": "重新整理 App 內的結果",
+    "viewQuotas": "檢視 App 內的配額",
+    "showFloatingCard": "顯示浮動卡片",
+    "floatingFailed": "無法重新開啟浮動卡片。請透過「設定」再試一次。",
+    "sessionOnly": "結果僅在本次 App 工作階段期間保留。通知偏好設定未變更。"
   }
 }

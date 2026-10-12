@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS đã chặn việc điều khiển {{target}} bằng các tính năng trợ năng. Trong Cài đặt hệ thống > Quyền riêng tư & Bảo mật > Trợ năng, hãy cấp quyền cho ứng dụng đang yêu cầu, rồi thử lại. Trên macOS 12, hãy mở Tùy chọn hệ thống > Bảo mật & Quyền riêng tư. Bạn cũng có thể đưa ứng dụng đích lên phía trước hoặc đóng ứng dụng đó theo cách thủ công.",
     "targetUnavailable": "macOS không thể tìm thấy hoặc liên lạc với {{target}}. Hãy kiểm tra xem ứng dụng đã được cài đặt và đang chạy chưa, rồi thử lại.",
     "failed": "Không thể điều khiển {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Trạng thái thông báo macOS",
+    "quotaSource": "Cảnh báo hạn mức",
+    "floatingSource": "Lời nhắc từ thẻ nổi",
+    "submitted": "Đã gửi đến API thông báo; chưa xác nhận việc chuyển phát.",
+    "identityFailed": "Không thể thiết lập danh tính dùng cho thông báo. Chưa gửi thông báo nào. Hãy thoát rồi mở lại ứng dụng đã cài đặt trước lần gửi thông báo tiếp theo mà bạn dự định thực hiện.",
+    "submissionFailed": "Không thể gửi thông báo. Điều này không chứng minh rằng quyền đã bị từ chối.",
+    "unverified": "Ứng dụng này không thể xác minh quyền thông báo gốc hoặc việc hiển thị thông báo đó. Gửi thành công không có nghĩa là biểu ngữ đã xuất hiện.",
+    "guidance": "Mở Cài đặt hệ thống > Thông báo > Cockpit Tools rồi kiểm tra Cho phép thông báo và các tùy chọn cảnh báo, sau đó kiểm tra Tập trung. Trên macOS 12, dùng Tùy chọn hệ thống > Thông báo & Tập trung. Các bản dựng phát triển có thể sử dụng danh tính ứng dụng khác.",
+    "readFailed": "Không thể đọc kết quả thông báo đã lưu trong ứng dụng. Làm mới không gửi thông báo hoặc kiểm tra quyền của macOS.",
+    "noAttempts": "Chưa ghi nhận lần thử gửi thông báo gốc nào trong phiên ứng dụng này.",
+    "refresh": "Làm mới kết quả trong ứng dụng",
+    "viewQuotas": "Xem hạn mức trong ứng dụng",
+    "showFloatingCard": "Hiển thị thẻ nổi",
+    "floatingFailed": "Không thể mở lại thẻ nổi. Hãy thử lại qua Cài đặt.",
+    "sessionOnly": "Kết quả được lưu giữ trong phiên ứng dụng này. Tùy chọn thông báo không thay đổi."
   }
 }

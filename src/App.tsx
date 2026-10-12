@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { FileText, FolderOpen, RefreshCw, X } from 'lucide-react';
 import { SideNav } from './components/layout/SideNav';
 import { GlobalModal } from './components/GlobalModal';
+import { NativeNotificationFeedback } from './components/NativeNotificationFeedback';
 import type { QuickSettingsType } from './components/QuickSettingsPopover';
 import { Page } from './types/navigation';
 import { useAutoRefresh } from './hooks/useAutoRefresh';
@@ -3143,6 +3144,7 @@ function MainApp() {
       </Suspense>
 
       <div className="main-wrapper">
+        <NativeNotificationFeedback onViewQuotas={() => setPage('dashboard')} />
         {macosAutomationNotice === 'visible' && (
           <div className="macos-automation-notice" role="status">
             <span>{t('macosAutomation.backgroundDeferred')}</span>

@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS memblokir kontrol atas {{target}} melalui fitur aksesibilitas. Di Pengaturan Sistem > Privasi & Keamanan > Aksesibilitas, berikan izin kepada app yang memintanya, lalu coba lagi. Di macOS 12, buka Preferensi Sistem > Keamanan & Privasi. Anda juga dapat membawa app tujuan ke latar depan atau menutupnya secara manual.",
     "targetUnavailable": "macOS tidak dapat menemukan atau menghubungi {{target}}. Pastikan app sudah terinstal dan sedang berjalan, lalu coba lagi.",
     "failed": "Tidak dapat mengontrol {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "Status notifikasi macOS",
+    "quotaSource": "Peringatan kuota",
+    "floatingSource": "Pengingat kartu mengambang",
+    "submitted": "Dikirim ke API notifikasi; penyampaiannya belum dikonfirmasi.",
+    "identityFailed": "Penyiapan identitas notifikasi gagal. Tidak ada notifikasi yang dikirim. Keluar dari app yang terinstal, lalu buka kembali sebelum notifikasi berikutnya yang ingin dikirim.",
+    "submissionFailed": "Pengiriman notifikasi gagal. Ini tidak membuktikan bahwa izin ditolak.",
+    "unverified": "App ini tidak dapat memverifikasi izin atau tampilan notifikasi native. Pengiriman yang berhasil tidak berarti spanduk telah muncul.",
+    "guidance": "Buka Pengaturan Sistem > Pemberitahuan > Cockpit Tools, lalu periksa Izinkan pemberitahuan dan opsi peringatan. Setelah itu, periksa Fokus. Di macOS 12, gunakan Preferensi Sistem > Pemberitahuan & Fokus. Versi pengembangan mungkin menggunakan identitas app yang berbeda.",
+    "readFailed": "Hasil notifikasi yang tersimpan di dalam app tidak dapat dibaca. Penyegaran tidak mengirim notifikasi atau memeriksa izin macOS.",
+    "noAttempts": "Belum ada upaya notifikasi native yang tercatat dalam sesi app ini.",
+    "refresh": "Segarkan hasil dalam app",
+    "viewQuotas": "Lihat kuota dalam app",
+    "showFloatingCard": "Tampilkan kartu mengambang",
+    "floatingFailed": "Kartu mengambang tidak dapat dibuka kembali. Gunakan Pengaturan untuk mencoba lagi.",
+    "sessionOnly": "Hasil disimpan selama sesi app ini. Preferensi notifikasi tidak berubah."
   }
 }

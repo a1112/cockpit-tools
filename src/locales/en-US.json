@@ -3887,5 +3887,22 @@
     "accessibilityDenied": "macOS blocked accessibility control of {{target}}. In System Settings > Privacy & Security > Accessibility, allow the requesting app, then retry. On macOS 12, use System Preferences > Security & Privacy. You can focus or close the target app manually instead.",
     "targetUnavailable": "macOS could not find or contact {{target}}. Check that the app is installed and running, then retry.",
     "failed": "Could not control {{target}}: {{detail}}"
+  },
+  "macosNotifications": {
+    "title": "macOS notification status",
+    "quotaSource": "Quota alert",
+    "floatingSource": "Floating-card reminder",
+    "submitted": "Submitted to the notification API; delivery is unconfirmed.",
+    "identityFailed": "Notification identity setup failed. No notification was submitted. Quit and reopen the installed app before the next intended notification.",
+    "submissionFailed": "Notification submission failed. This does not establish that permission was denied.",
+    "unverified": "This app cannot verify native notification authorization or presentation. A successful submission does not mean a banner appeared.",
+    "guidance": "Open System Settings > Notifications > Cockpit Tools and check Allow Notifications and alert options, then check Focus. On macOS 12, use System Preferences > Notifications & Focus. Development builds may use a different app identity.",
+    "readFailed": "The saved in-app notification result could not be read. Refreshing does not send a notification or check macOS permissions.",
+    "noAttempts": "No native notification attempt has been recorded in this app session.",
+    "refresh": "Refresh in-app result",
+    "viewQuotas": "View in-app quotas",
+    "showFloatingCard": "Show floating card",
+    "floatingFailed": "The floating card could not be reopened. Use Settings to try again.",
+    "sessionOnly": "Results are retained for this app session. Notification preferences are unchanged."
   }
 }

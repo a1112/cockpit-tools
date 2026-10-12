@@ -48,6 +48,10 @@ pub mod logger;
 #[cfg(any(target_os = "macos", test))]
 pub mod macos_automation;
 pub mod macos_native_menu;
+#[cfg(target_os = "macos")]
+pub mod macos_notifications;
+#[cfg(any(target_os = "macos", test))]
+pub mod notification_feedback;
 pub mod oauth;
 pub mod oauth_pending_state;
 pub mod oauth_server;
