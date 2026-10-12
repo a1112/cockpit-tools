@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "notes": "Source package numbers are preserved. A numeric source version does not claim a released/stable product. See VERSIONING.md for release history, native release owners and limitations.",
+  "units": {
+    "crate-cockpit-cli": {
+      "canonical": {
+        "path": "crates/cockpit-cli/Cargo.toml",
+        "adapter": "toml",
+        "table": [
+          "package"
+        ],
+        "key": "version",
+        "format": "semver"
+      },
+      "mirrors": [
+        {
+          "path": "Cargo.lock",
+          "adapter": "cargo-lock",
+          "package": "cockpit-cli",
+          "format": "semver"
+        }
+      ],
+      "assertions": [],
+      "notes": "Independent Rust package; no repository-wide release version is inferred."
+    },
+    "crate-cockpit-core": {
+      "canonical": {
+        "path": "crates/cockpit-core/Cargo.toml",
+        "adapter": "toml",
+        "table": [
+          "package"
+        ],
+        "key": "version",
+        "format": "semver"
+      },
+      "mirrors": [
+        {
+          "path": "Cargo.lock",
+          "adapter": "cargo-lock",
+          "package": "cockpit-core",
+          "format": "semver"
+        }
+      ],
+      "assertions": [],
+      "notes": "Independent Rust package; no repository-wide release version is inferred."
+    },
+    "crate-cockpit-tools": {
+      "canonical": {
+        "path": "src-tauri/Cargo.toml",
+        "adapter": "toml",
+        "table": [
+          "package"
+        ],
+        "key": "version",
+        "format": "semver"
+      },
+      "mirrors": [
+        {
+          "path": "Cargo.lock",
+          "adapter": "cargo-lock",
+          "package": "cockpit-tools",
+          "format": "semver"
+        },
+        {
+          "path": "src-tauri/Cargo.lock",
+          "adapter": "cargo-lock",
+          "package": "cockpit-tools",
+          "format": "semver"
+        },
+        {
+          "path": "src-tauri/tauri.conf.json",
+          "adapter": "json",
+          "pointer": "/version",
+          "format": "semver"
+        },
+        {
+          "path": "package.json",
+          "adapter": "json",
+          "pointer": "/version",
+          "format": "semver"
+        },
+        {
+          "path": "package-lock.json",
+          "adapter": "json",
+          "pointer": "/version",
+          "format": "semver"
+        },
+        {
+          "path": "package-lock.json",
+          "adapter": "json",
+          "pointer": "/packages//version",
+          "format": "semver"
+        }
+      ],
+      "assertions": [],
+      "notes": "Independent Rust package; no repository-wide release version is inferred Tauri application packaging version is synchronized with its own Cargo package."
+    }
+  },
+  "unmanaged": [
+    {
+      "name": "non-product versions",
+      "reason": "Dependency/toolchain/Swift tools/SDK, protocol, schema, database and generated/upstream versions are not application release versions.",
+      "paths": []
+    },
+    {
+      "name": "historical sources",
+      "reason": "Vendored code, generated Apple projects, docs/evidence and junk snapshots retain their original versions and are excluded from bump operations.",
+      "paths": []
+    }
+  ]
+}
