@@ -14,7 +14,7 @@ The crate's `set_application` uses a global `Once`. Later calls return `AlreadyS
 
 - Successful initialization is reused across both notification sources.
 - Failed or unexpected initialization blocks submission. The result instructs the user to quit and reopen the installed app before the next intended notification; repeated initialization cannot recover inside the same process.
-- Submission is serialized because the legacy native implementation replaces a shared notification-center delegate.
+- The mutex serializes identity setup, calls into the submission API, and feedback updates because the legacy implementation replaces a shared notification-center delegate. This does not establish serialization of asynchronous OS delivery or the lifetime/safety of that delegate after the call returns; those remain native validation gates.
 - `wait_for_click(false).asynchronous(true)` is retained. No click-waiting loop or automatic resend is added.
 
 ## Visible feedback and recovery
