@@ -860,15 +860,10 @@ fn focus_window_by_pid(pid: u32) -> Result<(), String> {
         "tell application \"System Events\" to set frontmost of (first process whose unix id is {}) to true",
         pid
     );
-    let output = Command::new("osascript")
-        .args(["-e", &script])
-        .output()
-        .map_err(|e| format!("调用 osascript 失败: {}", e))?;
-    if output.status.success() {
-        return Ok(());
-    }
-    let stderr = String::from_utf8_lossy(&output.stderr);
-    Err(format!("定位 Kiro 窗口失败: {}", stderr.trim()))
+    crate::modules::macos_automation::run(
+        &script,
+        crate::modules::macos_automation::Target::SystemEvents,
+    )
 }
 
 #[cfg(target_os = "windows")]

@@ -3880,5 +3880,12 @@
       "warn": "Ostrzeż.",
       "error": "Błąd"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Automatyczne przełączanie kont Antigravity wymagające ponownego uruchomienia aplikacji jest wstrzymane w macOS, aby uniknąć próśb o uprawnienia w tle. Otwórz konta Antigravity i przełącz konto ręcznie lub włącz tryb przełączania bez ponownego uruchamiania.",
+    "automationDenied": "macOS nie zezwolił na sterowanie aplikacją {{target}}. W Ustawienia systemowe > Prywatność i ochrona > Automatyzacja zezwól aplikacji proszącej o dostęp na sterowanie aplikacją {{target}}, a następnie spróbuj ponownie. W macOS 12 wybierz Preferencje systemowe > Ochrona i prywatność. Jeśli wpis uprawnienia się nie pojawia, sprawdź podpis zainstalowanej aplikacji i jej obsługę Apple Events. Możesz też wykonać tę czynność ręcznie.",
+    "accessibilityDenied": "macOS zablokował sterowanie aplikacją {{target}} za pomocą funkcji dostępności. W Ustawienia systemowe > Prywatność i ochrona > Dostępność nadaj uprawnienie aplikacji, która o nie prosi, a następnie spróbuj ponownie. W macOS 12 wybierz Preferencje systemowe > Ochrona i prywatność. Możesz też ręcznie przenieść aplikację docelową na pierwszy plan lub ją zamknąć.",
+    "targetUnavailable": "macOS nie mógł znaleźć aplikacji {{target}} lub nawiązać z nią połączenia. Sprawdź, czy aplikacja jest zainstalowana i uruchomiona, a następnie spróbuj ponownie.",
+    "failed": "Nie można sterować aplikacją {{target}}: {{detail}}"
   }
 }

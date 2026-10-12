@@ -3880,5 +3880,12 @@
       "warn": "Varování",
       "error": "Chyba"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Automatické přepínání účtů Antigravity spojené s restartováním aplikace je v macOS pozastaveno, aby se na pozadí nezobrazovaly žádosti o oprávnění. Otevřete účty Antigravity a přepněte účet ručně, nebo zapněte režim přepínání bez restartování.",
+    "automationDenied": "macOS nepovolil ovládání aplikace {{target}}. V Nastavení systému > Soukromí a zabezpečení > Automatizace povolte žádající aplikaci ovládat aplikaci {{target}} a zkuste to znovu. V macOS 12 použijte Předvolby systému > Zabezpečení a soukromí. Pokud se položka oprávnění nezobrazí, zkontrolujte podpis nainstalované aplikace a její podporu Apple Events. Tuto akci můžete provést také ručně.",
+    "accessibilityDenied": "macOS zablokoval ovládání aplikace {{target}} pomocí funkcí zpřístupnění. V Nastavení systému > Soukromí a zabezpečení > Zpřístupnění udělte žádající aplikaci oprávnění a zkuste to znovu. V macOS 12 použijte Předvolby systému > Zabezpečení a soukromí. Cílovou aplikaci můžete také ručně přenést do popředí nebo zavřít.",
+    "targetUnavailable": "macOS nemohl najít aplikaci {{target}} nebo s ní navázat spojení. Zkontrolujte, zda je aplikace nainstalovaná a spuštěná, a zkuste to znovu.",
+    "failed": "Aplikaci {{target}} se nepodařilo ovládat: {{detail}}"
   }
 }

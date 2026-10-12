@@ -3880,5 +3880,12 @@
     "importErrorMsg": "Import failed. Please ensure the file format is a valid exported JSON array.",
     "btnImportTitle": "Import Local JSON Backup",
     "btnExportTitle": "Export Saved as JSON"
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Automatic Antigravity switching that restarts the app is paused on macOS to avoid permission prompts in the background. Open Antigravity accounts and switch manually, or enable the no-restart switching mode.",
+    "automationDenied": "macOS did not authorize control of {{target}}. In System Settings > Privacy & Security > Automation, allow the requesting app to control {{target}}, then retry. On macOS 12, use System Preferences > Security & Privacy. If no permission entry appears, check the installed app’s signing and Apple Events support. You can complete this action manually instead.",
+    "accessibilityDenied": "macOS blocked accessibility control of {{target}}. In System Settings > Privacy & Security > Accessibility, allow the requesting app, then retry. On macOS 12, use System Preferences > Security & Privacy. You can focus or close the target app manually instead.",
+    "targetUnavailable": "macOS could not find or contact {{target}}. Check that the app is installed and running, then retry.",
+    "failed": "Could not control {{target}}: {{detail}}"
   }
 }

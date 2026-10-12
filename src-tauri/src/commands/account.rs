@@ -207,12 +207,18 @@ pub async fn switch_account(app: AppHandle, account_id: String) -> Result<models
         modules::save_account(&account)?;
     }
 
-    // 3. 更新工具内部状态
+    // 3. 先关闭受管进程（权限拒绝时不修改账号选择或绑定）：按默认实例目录关闭受管进程，等待其完全退出
+    let default_dir = modules::instance::get_default_user_data_dir()?;
+    let default_dir_str = default_dir.to_string_lossy().to_string();
+    modules::process::close_antigravity_instances(&[default_dir_str], 20)?;
+    let _ = modules::instance::update_default_pid(None);
+
+    // 4. 更新工具内部状态
     modules::set_current_account_id(&account_id)?;
     account.update_last_used();
     modules::save_account(&account)?;
 
-    // 4. 同步更新 Antigravity 默认实例的绑定账号（不同步到 Codex，因为账号体系不同）
+    // 5. 同步更新 Antigravity 默认实例的绑定账号（不同步到 Codex，因为账号体系不同）
     if let Err(e) = modules::instance::update_default_settings(
         Some(Some(account_id.clone())),
         None,
@@ -225,12 +231,6 @@ pub async fn switch_account(app: AppHandle, account_id: String) -> Result<models
             account_id
         ));
     }
-
-    // 5. 关闭受管进程：按默认实例目录关闭受管进程，等待其完全退出
-    let default_dir = modules::instance::get_default_user_data_dir()?;
-    let default_dir_str = default_dir.to_string_lossy().to_string();
-    modules::process::close_antigravity_instances(&[default_dir_str], 20)?;
-    let _ = modules::instance::update_default_pid(None);
 
     // 6. 进程完全退出后，执行磁盘级别的文件注入
     // 6.1 写入设备指纹到 storage.json 和 state.vscdb

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Cockpit Tools uses System Events to focus or close IDE windows, controls Zed sessions, and runs your selected CLI command in Terminal or iTerm when you use these actions.</string>
+</dict>
+</plist>

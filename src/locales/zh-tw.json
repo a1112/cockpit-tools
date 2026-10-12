@@ -3880,5 +3880,12 @@
       "warn": "警告",
       "error": "錯誤"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "在 macOS 上，需要重新啟動 App 的 Antigravity 自動切換已暫停，以免在背景觸發權限提示。請開啟 Antigravity 帳號頁面並手動切換，或啟用免重新啟動切換模式。",
+    "automationDenied": "macOS 未授權控制 {{target}}。請前往「系統設定」>「隱私權與安全性」>「自動化」，允許提出要求的 App 控制 {{target}}，然後再試一次。在 macOS 12 中，請前往「系統偏好設定」>「安全性與隱私權」。如果未顯示權限項目，請檢查已安裝 App 的程式碼簽署及其對 Apple Events 的支援。你也可以手動完成此操作。",
+    "accessibilityDenied": "macOS 已阻擋透過輔助使用控制 {{target}}。請前往「系統設定」>「隱私權與安全性」>「輔助使用」，授權提出要求的 App，然後再試一次。在 macOS 12 中，請前往「系統偏好設定」>「安全性與隱私權」。你也可以手動將目標 App 切換至前景或關閉它。",
+    "targetUnavailable": "macOS 找不到 {{target}} 或無法與其通訊。請確認該 App 已安裝且正在執行，然後再試一次。",
+    "failed": "無法控制 {{target}}：{{detail}}"
   }
 }

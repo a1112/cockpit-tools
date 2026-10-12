@@ -62,6 +62,7 @@ import {
 } from './utils/externalProviderImport';
 import { runAutoBackupCycle } from './services/scheduledBackupService';
 import { prepareCodexLocalAccessForRestart } from './services/codexLocalAccessService';
+import { reduceMacosAutomationNotice, type MacosAutomationNoticeState } from './utils/macosAutomationNotice';
 
 const DashboardPage = lazy(() =>
   import('./pages/DashboardPage').then((module) => ({ default: module.DashboardPage })),
@@ -482,6 +483,7 @@ function MainApp() {
   const markSideNavClassicFirstSyncDone = useSideNavLayoutStore((state) => state.markClassicFirstSyncDone);
   const syncSidebarEntriesFromDashboard = usePlatformLayoutStore((state) => state.syncSidebarEntriesFromDashboard);
   const [page, setPage] = useState<Page>('dashboard');
+  const [macosAutomationNotice, setMacosAutomationNotice] = useState<MacosAutomationNoticeState>('unseen');
   const [showUpdateNotification, setShowUpdateNotification] = useState(false);
   const [updateNotificationKey, setUpdateNotificationKey] = useState(0);
   const [showCloseDialog, setShowCloseDialog] = useState(false);
@@ -2106,6 +2108,22 @@ function MainApp() {
   }, []);
 
   useEffect(() => {
+    let disposed = false;
+    let unlisten: UnlistenFn | undefined;
+    listen('macos:automation-deferred', () => {
+      if (disposed) return;
+      setMacosAutomationNotice((state) => reduceMacosAutomationNotice(state, 'deferred'));
+    }).then((fn) => {
+      if (disposed) fn();
+      else unlisten = fn;
+    }).catch((error) => console.error('Failed to listen for macOS automation notice:', error));
+    return () => {
+      disposed = true;
+      unlisten?.();
+    };
+  }, []);
+
+  useEffect(() => {
     let unlisten: UnlistenFn | undefined;
 
     listen<string>('settings:language_changed', (event) => {
@@ -3125,6 +3143,27 @@ function MainApp() {
       </Suspense>
 
       <div className="main-wrapper">
+        {macosAutomationNotice === 'visible' && (
+          <div className="macos-automation-notice" role="status">
+            <span>{t('macosAutomation.backgroundDeferred')}</span>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                setPage('overview');
+                setMacosAutomationNotice((state) => reduceMacosAutomationNotice(state, 'dismiss'));
+              }}
+            >
+              {t('nav.overview', 'Antigravity')}
+            </button>
+            <button
+              className="btn btn-secondary"
+              aria-label={t('common.close', '关闭')}
+              onClick={() => setMacosAutomationNotice((state) => reduceMacosAutomationNotice(state, 'dismiss'))}
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
         {/* overview 现在是合并后的账号总览页面 */}
         <Suspense fallback={suspenseFallback}>
           {page === 'dashboard' && (

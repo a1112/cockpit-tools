@@ -50,6 +50,10 @@
     "active": true,
     "targets": "all",
     "createUpdaterArtifacts": true,
+    "macOS": {
+      "infoPlist": "Info.plist",
+      "entitlements": "Entitlements.plist"
+    },
     "icon": [
       "icons/48x48.png",
       "icons/32x32.png",

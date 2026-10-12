@@ -132,21 +132,19 @@ pub fn start_default_session() -> Result<ZedRuntimeStatus, String> {
 }
 
 #[cfg(target_os = "macos")]
-fn quit_zed_app() {
-    let _ = Command::new("osascript")
-        .args(["-e", "tell application \"Zed\" to quit"])
-        .output();
+fn quit_zed_app() -> Result<(), String> {
+    crate::modules::macos_automation::run_graceful_close(
+        "tell application \"Zed\" to quit",
+        crate::modules::macos_automation::Target::Zed,
+    )
 }
-
-#[cfg(not(target_os = "macos"))]
-fn quit_zed_app() {}
 
 pub fn stop_default_session() -> Result<ZedRuntimeStatus, String> {
     let state = load_runtime_state();
 
     #[cfg(target_os = "macos")]
     {
-        quit_zed_app();
+        quit_zed_app()?;
         thread::sleep(Duration::from_millis(1200));
     }
 
@@ -163,7 +161,7 @@ pub fn restart_default_session() -> Result<ZedRuntimeStatus, String> {
     let previous = load_runtime_state();
     #[cfg(target_os = "macos")]
     {
-        quit_zed_app();
+        quit_zed_app()?;
         thread::sleep(Duration::from_millis(1200));
     }
     if let Some(pid) = resolve_running_pid(previous.last_pid) {
@@ -180,17 +178,10 @@ pub fn focus_default_session() -> Result<ZedRuntimeStatus, String> {
 
     #[cfg(target_os = "macos")]
     {
-        let output = Command::new("osascript")
-            .args(["-e", "tell application \"Zed\" to activate"])
-            .output()
-            .map_err(|e| format!("执行 Zed activate 失败: {}", e))?;
-        if !output.status.success() {
-            return Err(format!(
-                "激活 Zed 失败: status={}, stderr={}",
-                output.status,
-                String::from_utf8_lossy(&output.stderr).trim()
-            ));
-        }
+        crate::modules::macos_automation::run(
+            "tell application \"Zed\" to activate",
+            crate::modules::macos_automation::Target::Zed,
+        )?;
     }
 
     #[cfg(not(target_os = "macos"))]

@@ -45,6 +45,8 @@ pub mod kiro_instance;
 pub mod kiro_oauth;
 pub mod linux_updater;
 pub mod logger;
+#[cfg(any(target_os = "macos", test))]
+pub mod macos_automation;
 pub mod macos_native_menu;
 pub mod oauth;
 pub mod oauth_pending_state;

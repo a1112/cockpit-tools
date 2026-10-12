@@ -3880,5 +3880,12 @@
     "importErrorMsg": "导入失败，请检查文件格式是否为您之前导出的格式 (JSON Array)。",
     "btnImportTitle": "导入本地的 JSON 文件",
     "btnExportTitle": "导出已保存为 JSON"
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "在 macOS 上，需要重启 App 的 Antigravity 自动切换已暂停，以免在后台触发权限提示。请打开 Antigravity 账户页面并手动切换，或启用免重启切换模式。",
+    "automationDenied": "macOS 未授权控制 {{target}}。请前往“系统设置”>“隐私与安全性”>“自动化”，允许发起请求的 App 控制 {{target}}，然后重试。在 macOS 12 中，请前往“系统偏好设置”>“安全性与隐私”。如果没有出现权限条目，请检查已安装 App 的代码签名及其对 Apple Events 的支持。你也可以手动完成此操作。",
+    "accessibilityDenied": "macOS 阻止了通过辅助功能控制 {{target}}。请前往“系统设置”>“隐私与安全性”>“辅助功能”，允许发起请求的 App 访问，然后重试。在 macOS 12 中，请前往“系统偏好设置”>“安全性与隐私”。你也可以手动将目标 App 切换到前台或关闭它。",
+    "targetUnavailable": "macOS 无法找到 {{target}} 或与其通信。请确认该 App 已安装且正在运行，然后重试。",
+    "failed": "无法控制 {{target}}：{{detail}}"
   }
 }

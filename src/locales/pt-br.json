@@ -3880,5 +3880,12 @@
       "warn": "Aviso",
       "error": "Erro"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "A troca automática de contas do Antigravity que reinicia o app está pausada no macOS para evitar solicitações de permissão em segundo plano. Abra as contas do Antigravity e troque de conta manualmente ou ative o modo de troca sem reinicialização.",
+    "automationDenied": "O macOS não autorizou o controle de {{target}}. Em Ajustes do Sistema > Privacidade e Segurança > Automação, permita que o app que solicita a permissão controle {{target}} e tente novamente. No macOS 12, use Preferências do Sistema > Segurança e Privacidade. Se nenhuma entrada de permissão aparecer, verifique a assinatura do app instalado e o suporte a Apple Events. Você também pode realizar esta ação manualmente.",
+    "accessibilityDenied": "O macOS bloqueou o controle de {{target}} pelos recursos de acessibilidade. Em Ajustes do Sistema > Privacidade e Segurança > Acessibilidade, conceda a permissão ao app que a solicita e tente novamente. No macOS 12, use Preferências do Sistema > Segurança e Privacidade. Você também pode trazer o app de destino para o primeiro plano ou fechá-lo manualmente.",
+    "targetUnavailable": "O macOS não conseguiu encontrar {{target}} ou se comunicar com o app. Verifique se o app está instalado e em execução e tente novamente.",
+    "failed": "Não foi possível controlar {{target}}: {{detail}}"
   }
 }

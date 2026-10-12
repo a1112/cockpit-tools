@@ -3880,5 +3880,12 @@
       "warn": "Warnung",
       "error": "Fehler"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Der automatische Antigravity-Kontowechsel mit App-Neustart ist unter macOS pausiert, damit im Hintergrund keine Berechtigungsabfragen erscheinen. Öffne die Antigravity-Konten und wechsle manuell oder aktiviere den Wechselmodus ohne Neustart.",
+    "automationDenied": "macOS hat die Steuerung von {{target}} nicht autorisiert. Erlaube der anfragenden App unter Systemeinstellungen > Datenschutz & Sicherheit > Automation, {{target}} zu steuern, und versuche es erneut. Verwende unter macOS 12 Systemeinstellungen > Sicherheit & Datenschutz. Wenn kein Berechtigungseintrag erscheint, prüfe die Signierung der installierten App und ihre Unterstützung für Apple Events. Du kannst diese Aktion auch manuell ausführen.",
+    "accessibilityDenied": "macOS hat die Steuerung von {{target}} über Bedienungshilfen blockiert. Erteile der anfragenden App unter Systemeinstellungen > Datenschutz & Sicherheit > Bedienungshilfen die Berechtigung und versuche es erneut. Verwende unter macOS 12 Systemeinstellungen > Sicherheit & Datenschutz. Du kannst die Ziel-App auch manuell in den Vordergrund bringen oder schließen.",
+    "targetUnavailable": "macOS konnte {{target}} nicht finden oder erreichen. Prüfe, ob die App installiert ist und ausgeführt wird, und versuche es erneut.",
+    "failed": "{{target}} konnte nicht gesteuert werden: {{detail}}"
   }
 }

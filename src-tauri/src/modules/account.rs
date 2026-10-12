@@ -1809,6 +1809,22 @@ async fn run_auto_switch_if_needed_inner() -> Result<Option<Account>, String> {
     candidates.sort_by(compare_auto_switch_candidates);
 
     let target = &candidates[0];
+    // A parent-process AX check cannot prove osascript's TCC responsibility.
+    // Defer restart-required background work instead of risking a consent prompt
+    // or writing account state before the user can complete the close action.
+    #[cfg(target_os = "macos")]
+    if modules::macos_automation::should_defer_background_restart(
+        cfg.antigravity_dual_switch_no_restart_enabled,
+    ) {
+        use tauri::Emitter;
+        if let Some(app) = crate::get_app_handle() {
+            let _ = app.emit("macos:automation-deferred", ());
+        }
+        modules::logger::log_info(
+            "[AutoSwitch] macOS restart deferred; manual switch or no-restart mode required",
+        );
+        return Ok(None);
+    }
     modules::logger::log_info(&format!(
         "[AutoSwitch] 触发自动切号: current_id={}, target_id={}, threshold={}%, credits_enabled={}, credits_threshold={}, current_credits={:?}, scope={}, rule={}",
         current_id,
@@ -2025,6 +2041,12 @@ pub async fn switch_account_internal(account_id: &str) -> Result<Account, String
     let mut account = prepare_account_for_injection(account_id).await?;
     modules::logger::log_info("[Switch] 正在切换到账号");
 
+    // 2. 先关闭受管进程；权限拒绝时保留原账号、绑定和设备指纹
+    let default_dir = modules::instance::get_default_user_data_dir()?;
+    let default_dir_str = default_dir.to_string_lossy().to_string();
+    modules::process::close_antigravity_instances(&[default_dir_str], 20)?;
+    let _ = modules::instance::update_default_pid(None);
+
     // 3. 写入设备指纹到 storage.json
     if let Ok(storage_path) = modules::device::get_storage_path() {
         if let Some(ref fp_id) = account.fingerprint_id {
@@ -2052,11 +2074,7 @@ pub async fn switch_account_internal(account_id: &str) -> Result<Account, String
         modules::logger::log_warn(&format!("[Switch] 更新默认实例绑定账号失败: {}", e));
     }
 
-    // 6. 对齐默认实例启动逻辑：按默认实例目录关闭受管进程，再注入默认实例目录
-    let default_dir = modules::instance::get_default_user_data_dir()?;
-    let default_dir_str = default_dir.to_string_lossy().to_string();
-    modules::process::close_antigravity_instances(&[default_dir_str], 20)?;
-    let _ = modules::instance::update_default_pid(None);
+    // 6. 进程退出后注入默认实例目录
     modules::instance::inject_account_to_profile(&default_dir, account_id)?;
 
     // 7. 启动 Antigravity（带默认实例自定义启动参数；启动失败不阻断切号，保持原行为）

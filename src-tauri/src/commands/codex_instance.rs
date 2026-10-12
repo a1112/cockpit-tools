@@ -784,16 +784,12 @@ pub async fn codex_execute_instance_launch_command(
             ));
         };
 
-        let output = Command::new("osascript")
-            .arg("-e")
-            .arg(&script)
-            .output()
-            .map_err(|e| format!("打开终端失败 ({}): {}", app_name, e))?;
-
-        if !output.status.success() {
-            let stderr = String::from_utf8_lossy(&output.stderr);
-            return Err(format!("终端执行失败: {}", stderr.trim()));
-        }
+        let target = if is_iterm {
+            crate::modules::macos_automation::Target::ITerm
+        } else {
+            crate::modules::macos_automation::Target::Terminal
+        };
+        crate::modules::macos_automation::run(&script, target)?;
         return Ok(format!("已在 {} 执行 Codex CLI 命令", app_name));
     }
 

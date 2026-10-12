@@ -1469,15 +1469,10 @@ fn focus_window_by_pid(pid: u32) -> Result<(), String> {
         "tell application \"System Events\" to set frontmost of (first process whose unix id is {}) to true",
         pid
     );
-    let output = Command::new("osascript")
-        .args(["-e", &script])
-        .output()
-        .map_err(|e| format!("调用 osascript 失败: {}", e))?;
-    if output.status.success() {
-        return Ok(());
-    }
-    let stderr = String::from_utf8_lossy(&output.stderr);
-    Err(format!("定位 Windsurf 窗口失败: {}", stderr.trim()))
+    crate::modules::macos_automation::run(
+        &script,
+        crate::modules::macos_automation::Target::SystemEvents,
+    )
 }
 
 #[cfg(target_os = "windows")]
@@ -1957,9 +1952,9 @@ fn wait_windsurf_pids_exit(pids: &[u32], timeout_secs: u64) -> bool {
     }
 }
 
-fn request_windsurf_graceful_close(pid: u32) {
+fn request_windsurf_graceful_close(pid: u32) -> Result<(), String> {
     if pid == 0 || !modules::process::is_pid_running(pid) {
-        return;
+        return Ok(());
     }
 
     #[cfg(target_os = "macos")]
@@ -1969,29 +1964,10 @@ fn request_windsurf_graceful_close(pid: u32) {
 tell application \"System Events\" to keystroke \"q\" using command down",
             pid
         );
-        match Command::new("osascript").args(["-e", &script]).output() {
-            Ok(output) => {
-                if output.status.success() {
-                    modules::logger::log_info(&format!(
-                        "[Windsurf Close] 已发送优雅退出请求 pid={}",
-                        pid
-                    ));
-                } else {
-                    let stderr = String::from_utf8_lossy(&output.stderr);
-                    modules::logger::log_warn(&format!(
-                        "[Windsurf Close] 优雅退出失败 pid={} err={}",
-                        pid,
-                        stderr.trim()
-                    ));
-                }
-            }
-            Err(err) => {
-                modules::logger::log_warn(&format!(
-                    "[Windsurf Close] 调用 osascript 失败 pid={} err={}",
-                    pid, err
-                ));
-            }
-        }
+        crate::modules::macos_automation::run_graceful_close(
+            &script,
+            crate::modules::macos_automation::Target::SystemEvents,
+        )?;
     }
 
     #[cfg(target_os = "windows")]
@@ -2038,6 +2014,7 @@ tell application \"System Events\" to keystroke \"q\" using command down",
             .args(["-15", &pid.to_string()])
             .output();
     }
+    Ok(())
 }
 
 pub fn close_windsurf(user_data_dirs: &[String], timeout_secs: u64) -> Result<(), String> {
@@ -2077,7 +2054,7 @@ pub fn close_windsurf(user_data_dirs: &[String], timeout_secs: u64) -> Result<()
     ));
 
     for pid in &pids {
-        request_windsurf_graceful_close(*pid);
+        request_windsurf_graceful_close(*pid)?;
     }
     if wait_windsurf_pids_exit(&pids, 2) {
         modules::logger::log_info(&format!(

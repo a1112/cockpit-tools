@@ -3880,5 +3880,12 @@
       "warn": "Peringatan",
       "error": "Galat"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Peralihan akun Antigravity otomatis yang memulai ulang app dijeda di macOS untuk menghindari permintaan izin di latar belakang. Buka akun Antigravity dan beralih secara manual, atau aktifkan mode peralihan tanpa memulai ulang.",
+    "automationDenied": "macOS tidak mengizinkan kontrol atas {{target}}. Di Pengaturan Sistem > Privasi & Keamanan > Automasi, izinkan app yang meminta izin untuk mengontrol {{target}}, lalu coba lagi. Di macOS 12, buka Preferensi Sistem > Keamanan & Privasi. Jika entri izin tidak muncul, periksa penandatanganan app yang terinstal dan dukungannya untuk Apple Events. Anda juga dapat melakukan tindakan ini secara manual.",
+    "accessibilityDenied": "macOS memblokir kontrol atas {{target}} melalui fitur aksesibilitas. Di Pengaturan Sistem > Privasi & Keamanan > Aksesibilitas, berikan izin kepada app yang memintanya, lalu coba lagi. Di macOS 12, buka Preferensi Sistem > Keamanan & Privasi. Anda juga dapat membawa app tujuan ke latar depan atau menutupnya secara manual.",
+    "targetUnavailable": "macOS tidak dapat menemukan atau menghubungi {{target}}. Pastikan app sudah terinstal dan sedang berjalan, lalu coba lagi.",
+    "failed": "Tidak dapat mengontrol {{target}}: {{detail}}"
   }
 }

@@ -3880,5 +3880,12 @@
       "warn": "Cảnh báo",
       "error": "Lỗi"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Tính năng tự động chuyển tài khoản Antigravity có khởi động lại ứng dụng đã tạm dừng trên macOS để tránh xuất hiện lời nhắc cấp quyền trong nền. Hãy mở phần tài khoản Antigravity và chuyển thủ công, hoặc bật chế độ chuyển không cần khởi động lại.",
+    "automationDenied": "macOS chưa cấp phép điều khiển {{target}}. Trong Cài đặt hệ thống > Quyền riêng tư & Bảo mật > Tự động hóa, hãy cho phép ứng dụng đang yêu cầu quyền điều khiển {{target}}, rồi thử lại. Trên macOS 12, hãy mở Tùy chọn hệ thống > Bảo mật & Quyền riêng tư. Nếu không xuất hiện mục cấp quyền, hãy kiểm tra chữ ký mã của ứng dụng đã cài đặt và khả năng hỗ trợ Apple Events. Bạn cũng có thể thực hiện thao tác này theo cách thủ công.",
+    "accessibilityDenied": "macOS đã chặn việc điều khiển {{target}} bằng các tính năng trợ năng. Trong Cài đặt hệ thống > Quyền riêng tư & Bảo mật > Trợ năng, hãy cấp quyền cho ứng dụng đang yêu cầu, rồi thử lại. Trên macOS 12, hãy mở Tùy chọn hệ thống > Bảo mật & Quyền riêng tư. Bạn cũng có thể đưa ứng dụng đích lên phía trước hoặc đóng ứng dụng đó theo cách thủ công.",
+    "targetUnavailable": "macOS không thể tìm thấy hoặc liên lạc với {{target}}. Hãy kiểm tra xem ứng dụng đã được cài đặt và đang chạy chưa, rồi thử lại.",
+    "failed": "Không thể điều khiển {{target}}: {{detail}}"
   }
 }

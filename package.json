@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
+    "test:macos-permissions": "node scripts/test-macos-permissions.cjs",
     "prebuild": "npm run typecheck",
     "build": "npm run sync-version && tsc && vite build",
     "release:preflight": "node scripts/release/preflight.cjs",

@@ -3880,5 +3880,12 @@
       "warn": "Uyarı",
       "error": "Hata"
     }
+  },
+  "macosAutomation": {
+    "backgroundDeferred": "Arka planda izin istemlerinin görünmesini önlemek için uygulamayı yeniden başlatan otomatik Antigravity hesap geçişleri macOS’te duraklatıldı. Antigravity hesaplarını açıp elle geçiş yapın veya yeniden başlatmadan geçiş modunu etkinleştirin.",
+    "automationDenied": "macOS, {{target}} uygulamasının denetlenmesine izin vermedi. Sistem Ayarları > Gizlilik ve Güvenlik > Otomasyon bölümünde izin isteyen uygulamanın {{target}} uygulamasını denetlemesine izin verin ve yeniden deneyin. macOS 12’de Sistem Tercihleri > Güvenlik ve Gizlilik bölümünü kullanın. İzin kaydı görünmüyorsa yüklü uygulamanın kod imzasını ve Apple Events desteğini kontrol edin. Bu işlemi elle de yapabilirsiniz.",
+    "accessibilityDenied": "macOS, {{target}} uygulamasının erişilebilirlik özellikleriyle denetlenmesini engelledi. Sistem Ayarları > Gizlilik ve Güvenlik > Erişilebilirlik bölümünde izin isteyen uygulamaya izin verin ve yeniden deneyin. macOS 12’de Sistem Tercihleri > Güvenlik ve Gizlilik bölümünü kullanın. Hedef uygulamayı elle ön plana getirebilir veya kapatabilirsiniz.",
+    "targetUnavailable": "macOS, {{target}} uygulamasını bulamadı veya uygulamayla iletişim kuramadı. Uygulamanın yüklü ve çalışır durumda olduğunu kontrol edip yeniden deneyin.",
+    "failed": "{{target}} denetlenemedi: {{detail}}"
   }
 }

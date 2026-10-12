@@ -158,7 +158,19 @@ pub async fn inject_zed_account(app: AppHandle, account_id: String) -> Result<St
         account_id
     ));
 
+    #[cfg(target_os = "macos")]
+    {
+        zed_account::load_stored_account(&account_id)
+            .ok_or_else(|| format!("Zed 账号不存在: {}", account_id))?;
+        zed_instance::stop_default_session()?;
+    }
     let account = zed_account::inject_account(&account_id)?;
+    #[cfg(target_os = "macos")]
+    let restart_result = {
+        std::thread::sleep(std::time::Duration::from_millis(400));
+        zed_instance::start_default_session()
+    };
+    #[cfg(not(target_os = "macos"))]
     let restart_result = zed_instance::restart_default_session();
     let _ = crate::modules::tray::update_tray_menu(&app);
 
@@ -194,7 +206,15 @@ pub async fn inject_zed_account(app: AppHandle, account_id: String) -> Result<St
 
 #[tauri::command]
 pub async fn zed_logout_current_account(app: AppHandle) -> Result<String, String> {
+    #[cfg(target_os = "macos")]
+    zed_instance::stop_default_session()?;
     zed_account::clear_current_runtime_account()?;
+    #[cfg(target_os = "macos")]
+    let restart_result = {
+        std::thread::sleep(std::time::Duration::from_millis(400));
+        zed_instance::start_default_session()
+    };
+    #[cfg(not(target_os = "macos"))]
     let restart_result = zed_instance::restart_default_session();
     let _ = crate::modules::tray::update_tray_menu(&app);
 

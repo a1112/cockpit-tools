@@ -4320,20 +4320,10 @@ fn focus_window_by_pid(pid: u32) -> Result<(), String> {
         "tell application \"System Events\" to set frontmost of (first process whose unix id is {}) to true",
         pid
     );
-    crate::modules::logger::log_info(&format!("[Focus] macOS osascript start pid={}", pid));
-    let output = Command::new("osascript")
-        .args(["-e", &script])
-        .output()
-        .map_err(|e| format!("调用 osascript 失败: {}", e))?;
-    if output.status.success() {
-        crate::modules::logger::log_info(&format!("[Focus] macOS osascript success pid={}", pid));
-        return Ok(());
-    }
-    let stderr = String::from_utf8_lossy(&output.stderr);
-    Err(format!(
-        "窗口聚焦失败，请检查系统辅助功能权限: {}",
-        stderr.trim()
-    ))
+    crate::modules::macos_automation::run(
+        &script,
+        crate::modules::macos_automation::Target::SystemEvents,
+    )
 }
 
 #[cfg(target_os = "windows")]
@@ -5806,7 +5796,7 @@ fn close_managed_instances_common<CollectEntries, SelectMainPids, CollectRemaini
     collect_entries: CollectEntries,
     select_main_pids: SelectMainPids,
     collect_remaining_entries: CollectRemainingEntries,
-    graceful_close: Option<fn(u32)>,
+    graceful_close: Option<fn(u32) -> Result<(), String>>,
     graceful_wait_secs: Option<u64>,
     detail_logger: Option<fn(&[u32])>,
 ) -> Result<(), String>
@@ -5861,7 +5851,7 @@ where
 
     if let Some(graceful_close_fn) = graceful_close {
         for pid in &pids {
-            graceful_close_fn(*pid);
+            graceful_close_fn(*pid)?;
         }
         if let Some(wait_secs) = graceful_wait_secs {
             if wait_pids_exit(&pids, wait_secs) {
@@ -5967,7 +5957,7 @@ pub fn close_antigravity_instances(
                 default_dir.as_deref(),
             )
         },
-        Some(request_antigravity_graceful_close as fn(u32)),
+        Some(request_antigravity_graceful_close as fn(u32) -> Result<(), String>),
         Some(2),
         #[cfg(target_os = "windows")]
         Some(log_antigravity_process_details_for_pids as fn(&[u32])),
@@ -5976,9 +5966,9 @@ pub fn close_antigravity_instances(
     )
 }
 
-fn request_antigravity_graceful_close(pid: u32) {
+fn request_antigravity_graceful_close(pid: u32) -> Result<(), String> {
     if pid == 0 || !is_pid_running(pid) {
-        return;
+        return Ok(());
     }
 
     #[cfg(target_os = "macos")]
@@ -5988,29 +5978,10 @@ fn request_antigravity_graceful_close(pid: u32) {
 tell application \"System Events\" to keystroke \"q\" using command down",
             pid
         );
-        match Command::new("osascript").args(["-e", &script]).output() {
-            Ok(output) => {
-                if output.status.success() {
-                    crate::modules::logger::log_info(&format!(
-                        "[AG Close] 已发送优雅退出请求 pid={}",
-                        pid
-                    ));
-                } else {
-                    let stderr = String::from_utf8_lossy(&output.stderr);
-                    crate::modules::logger::log_warn(&format!(
-                        "[AG Close] 优雅退出失败 pid={} err={}",
-                        pid,
-                        stderr.trim()
-                    ));
-                }
-            }
-            Err(err) => {
-                crate::modules::logger::log_warn(&format!(
-                    "[AG Close] 调用 osascript 失败 pid={} err={}",
-                    pid, err
-                ));
-            }
-        }
+        crate::modules::macos_automation::run_graceful_close(
+            &script,
+            crate::modules::macos_automation::Target::SystemEvents,
+        )?;
     }
 
     #[cfg(target_os = "windows")]
@@ -6057,6 +6028,7 @@ tell application \"System Events\" to keystroke \"q\" using command down",
             .args(["-15", &pid.to_string()])
             .output();
     }
+    Ok(())
 }
 
 pub fn close_pid(pid: u32, timeout_secs: u64) -> Result<(), String> {
@@ -9281,7 +9253,7 @@ pub fn close_vscode(user_data_dirs: &[String], timeout_secs: u64) -> Result<(), 
                 default_dir.as_deref(),
             )
         },
-        Some(request_vscode_graceful_close as fn(u32)),
+        Some(request_vscode_graceful_close as fn(u32) -> Result<(), String>),
         Some(2),
         #[cfg(target_os = "windows")]
         Some(log_vscode_process_details_for_pids as fn(&[u32])),
@@ -9290,9 +9262,9 @@ pub fn close_vscode(user_data_dirs: &[String], timeout_secs: u64) -> Result<(), 
     )
 }
 
-fn request_vscode_graceful_close(pid: u32) {
+fn request_vscode_graceful_close(pid: u32) -> Result<(), String> {
     if pid == 0 || !is_pid_running(pid) {
-        return;
+        return Ok(());
     }
 
     #[cfg(target_os = "macos")]
@@ -9302,33 +9274,15 @@ fn request_vscode_graceful_close(pid: u32) {
 tell application \"System Events\" to keystroke \"q\" using command down",
             pid
         );
-        match Command::new("osascript").args(["-e", &script]).output() {
-            Ok(output) => {
-                if output.status.success() {
-                    crate::modules::logger::log_info(&format!(
-                        "[VSCode Close] 已发送优雅退出请求 pid={}",
-                        pid
-                    ));
-                } else {
-                    let stderr = String::from_utf8_lossy(&output.stderr);
-                    crate::modules::logger::log_warn(&format!(
-                        "[VSCode Close] 优雅退出失败 pid={} err={}",
-                        pid,
-                        stderr.trim()
-                    ));
-                }
-            }
-            Err(e) => {
-                crate::modules::logger::log_warn(&format!(
-                    "[VSCode Close] 调用 osascript 失败 pid={} err={}",
-                    pid, e
-                ));
-            }
-        }
+        crate::modules::macos_automation::run_graceful_close(
+            &script,
+            crate::modules::macos_automation::Target::SystemEvents,
+        )?;
     }
 
     #[cfg(not(target_os = "macos"))]
     {
         let _ = pid;
     }
+    Ok(())
 }
