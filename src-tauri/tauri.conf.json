@@ -15,15 +15,16 @@
       {
         "label": "main",
         "title": "Cockpit Tools",
-        "width": 1280,
-        "height": 800,
-        "minWidth": 900,
-        "minHeight": 600,
+        "width": 1080,
+        "height": 720,
+        "minWidth": 860,
+        "minHeight": 560,
         "center": true,
         "titleBarStyle": "Overlay",
         "hiddenTitle": true,
         "transparent": false,
-        "resizable": true
+        "resizable": true,
+        "visible": false
       },
       {
         "label": "floating-card",

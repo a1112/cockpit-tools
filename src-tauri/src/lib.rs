@@ -95,6 +95,7 @@ pub fn run() {
             }
         }))
         .setup(|app| {
+            window_placement::install(app.handle(), "main", (1080.0, 720.0), (860.0, 560.0));
             info!("Cockpit Tools 启动...");
 
             // 存储全局 AppHandle
@@ -870,3 +871,6 @@ pub fn run() {
 mod project_resource_monitor;
 
 mod project_window_chrome;
+
+mod window_geometry;
+mod window_placement;
