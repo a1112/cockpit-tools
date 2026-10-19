@@ -108,7 +108,12 @@ export function createAutoRefreshScheduler(
       activeCount += 1;
 
       void Promise.resolve()
-        .then(() => task.run())
+        .then(() => {
+          // stop() may run after selection but before this microtask starts.
+          if (!stopped) {
+            return task.run();
+          }
+        })
         .finally(() => {
           task.running = false;
           activeCount = Math.max(0, activeCount - 1);

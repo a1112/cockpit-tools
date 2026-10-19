@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
+    "test:auto-refresh": "node --test --test-concurrency=1 tests/auto-refresh-scheduler.test.cjs",
     "prebuild": "npm run typecheck",
     "build": "npm run sync-version && tsc && vite build",
     "release:preflight": "node scripts/release/preflight.cjs",
